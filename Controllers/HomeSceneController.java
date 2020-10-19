@@ -16,7 +16,7 @@ import javafx.scene.control.Button;
 /**
  * FXML Controller class
  *
- * @author Kalob Reinholz
+ * @author Kalob Reinholz, Brodrick Grimm
  */
 public class HomeSceneController implements Initializable {
 
@@ -26,6 +26,8 @@ public class HomeSceneController implements Initializable {
     private Button howToUse;
     @FXML
     private Button next;
+    @FXML
+    private Button quitButton;
 
     /**
      * Initializes the controller class.
@@ -33,14 +35,21 @@ public class HomeSceneController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-
-    @FXML
-    private void prevRecipe(ActionEvent event) {
     }
 
     @FXML
-    private void howToUse(ActionEvent event) {
+    private void prevRecipe(ActionEvent event) throws IOException {
+    }
+
+    @FXML
+    private void howToUse(ActionEvent event) throws IOException {
+        Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/HowToUse.fxml"));
+        Scene infoScene = new Scene(infoParent);
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(infoScene);
+        window.show();  
     }
 
     @FXML
@@ -53,5 +62,10 @@ public class HomeSceneController implements Initializable {
         window.setScene(infoScene);
         window.show();
     }
-    
+
+    @FXML
+    private void quit(ActionEvent event) {
+        Stage stage = (Stage) quitButton.getScene().getWindow();
+        stage.close();
+    }
 }
