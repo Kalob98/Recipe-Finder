@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 /**
  * @author Kalob Reinholz, Brodrick Grimm
  */
-
 public class Launch extends Application {
 
     @Override

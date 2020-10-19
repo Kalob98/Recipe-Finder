@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,6 +25,7 @@ import javafx.stage.Stage;
  * FXML Controller class
  *
  * @author Brody
+ * @author Kalob Reinholz
  */
 public class FoodInfoController implements Initializable {
 
@@ -35,7 +37,7 @@ public class FoodInfoController implements Initializable {
     private Button recipesButton;
     @FXML
     private Button backButton;
-
+  
     public FoodInfoController() {
         
     }
@@ -51,7 +53,6 @@ public class FoodInfoController implements Initializable {
     private void randomButton(ActionEvent event) {
         //applies search with no constraints
     }
-
 
     @FXML
     private void back(ActionEvent event) throws IOException {

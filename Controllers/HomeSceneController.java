@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controllers;
 
 import java.io.IOException;
@@ -15,8 +10,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.scene.control.Button;
 
 /**
  * FXML Controller class
@@ -54,13 +49,13 @@ public class HomeSceneController implements Initializable {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         window.setScene(infoScene);
-        window.show();
+        window.show();  
     }
 
     @FXML
     private void next(ActionEvent event) throws IOException {
-        Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/FoodInfo.fxml"));
-        Scene infoScene = new Scene(infoParent);
+        Parent infoParnet = FXMLLoader.load(getClass().getResource("/Views/FoodInfo.fxml"));
+        Scene infoScene = new Scene(infoParnet);
 
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -73,5 +68,4 @@ public class HomeSceneController implements Initializable {
         Stage stage = (Stage) quitButton.getScene().getWindow();
         stage.close();
     }
-
 }
