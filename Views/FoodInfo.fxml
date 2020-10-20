@@ -26,7 +26,7 @@
          </font>
       </Text>
       <Button fx:id="randomButton" layoutX="357.0" layoutY="334.0" mnemonicParsing="false" onAction="#randomButton" prefHeight="35.0" prefWidth="85.0" text="Search" />
-      <Button fx:id="recipesButton" layoutX="357.0" layoutY="388.0" mnemonicParsing="false" onAction="#recipesButton" prefHeight="35.0" prefWidth="85.0" text="Random" />
+      <Button fx:id="recipesButton" layoutX="357.0" layoutY="388.0" mnemonicParsing="false" onAction="#searchButton" prefHeight="35.0" prefWidth="85.0" text="Random" />
       <Button fx:id="backButton" layoutX="358.0" layoutY="439.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="85.0" text="Back" />
       <CheckBox layoutX="129.0" layoutY="149.0" mnemonicParsing="false" text="Poultry" />
       <CheckBox layoutX="129.0" layoutY="174.0" mnemonicParsing="false" text="Red Meat" />
