@@ -1,32 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controllers;
 
+/**
+ * This controller lets you choose a cuisine and items to include and/or
+ * exclude, or the app will find a random recipe for you.
+ *
+ * @author Brody
+ * @author Kalob Reinholz
+ *
+ * Last updated 10/20/20
+ */
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
+import APIs.cuisines;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 
-/**
- * FXML Controller class
- *
- * @author Brody
- * @author Kalob Reinholz
- */
 public class FoodInfoController implements Initializable {
 
     @FXML
@@ -34,46 +32,50 @@ public class FoodInfoController implements Initializable {
     @FXML
     private Button randomButton;
     @FXML
-    private Button recipesButton;
+    private Button searchButton;
     @FXML
     private Button backButton;
-  
-    public FoodInfoController() {
-        
-    }
 
     /**
      * Initializes the controller class.
+     *
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    }    
+        loadData();
+    }
 
     @FXML
-    private void randomButton(ActionEvent event) {
+    private void randomButton(ActionEvent _event) {
         //applies search with no constraints
     }
 
     @FXML
-    private void back(ActionEvent event) throws IOException {
+    private void back(ActionEvent _event) throws IOException {
         Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/HomeScene.fxml"));
         Scene infoScene = new Scene(infoParent);
 
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) _event.getSource()).getScene().getWindow();
 
         window.setScene(infoScene);
         window.show();
     }
 
     @FXML
-    private void recipesButton(ActionEvent event) throws IOException {
+    private void searchButton(ActionEvent _event) throws IOException {
         Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/RecipeScene.fxml"));
         Scene infoScene = new Scene(infoParent);
 
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) _event.getSource()).getScene().getWindow();
 
         window.setScene(infoScene);
         window.show();
     }
-    
+
+    private void loadData() {
+        cuisineChoiceBox.getItems().addAll(cuisines.loadCuisines());
+    }
+
 }
