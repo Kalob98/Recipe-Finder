@@ -38,7 +38,13 @@ public class HowToUseController implements Initializable {
 
     @FXML
     private void back(ActionEvent event) throws IOException {
-        
+        Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/HomeScene.fxml"));
+        Scene infoScene = new Scene(infoParent);
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(infoScene);
+        window.show();
     }
     
 }

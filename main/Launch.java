@@ -8,14 +8,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
-<<<<<<< HEAD
  * @author Kalob Reinholz, Brodrick Grimm
  */
+ 
 
-=======
- * @author Kalob Reinholz
- */
->>>>>>> master
 public class Launch extends Application {
 
     @Override

@@ -16,6 +16,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 /**
@@ -26,6 +28,10 @@ import javafx.stage.Stage;
 public class RecipeSceneController implements Initializable {
 
     @FXML
+    private WebView webView;
+    @FXML
+    private WebEngine webEngine;
+    @FXML
     private Button saveButton;
     @FXML
     private Button backButton;
@@ -35,7 +41,8 @@ public class RecipeSceneController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        webEngine = webView.getEngine();
+        webEngine.load("https://www.google.com/");
     }    
 
     @FXML
