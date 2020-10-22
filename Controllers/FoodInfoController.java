@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+<<<<<<< HEAD
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,36 +20,61 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
+=======
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+>>>>>>> master
 
 /**
  * FXML Controller class
  *
+<<<<<<< HEAD
  * @author Brody
+=======
+ * @author Kalob Reinholz
+>>>>>>> master
  */
 public class FoodInfoController implements Initializable {
 
     @FXML
+<<<<<<< HEAD
     private ChoiceBox<String> cuisineChoiceBox;
+=======
+    private ChoiceBox<?> cuisineChoiceBox;
+>>>>>>> master
     @FXML
     private Button randomButton;
     @FXML
     private Button recipesButton;
+<<<<<<< HEAD
     @FXML
     private Button backButton;
 
     public FoodInfoController() {
         
     }
+=======
+>>>>>>> master
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+<<<<<<< HEAD
+=======
+        // TODO
+>>>>>>> master
     }    
 
     @FXML
     private void randomButton(ActionEvent event) {
+<<<<<<< HEAD
         //applies search with no constraints
     }
 
@@ -73,6 +99,12 @@ public class FoodInfoController implements Initializable {
 
         window.setScene(infoScene);
         window.show();
+=======
+    }
+
+    @FXML
+    private void recipesButton(ActionEvent event) {
+>>>>>>> master
     }
     
 }
