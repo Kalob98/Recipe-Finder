@@ -19,9 +19,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class SpoonacularAPI {
+public class SpoonacularAPI implements RecipeApiInterface {
 
     private static HttpURLConnection connection;
+    
+    @Override
+    public int loadRecipeId(String _cuisine, String _inlcudedIngredients, String _excludedIngredients, String _Intolerances) {
+        return 12;
+    }
 
     public static void main(String[] args) {
         String baseURL = "https://api.spoonacular.com/recipes/complexSearch?";

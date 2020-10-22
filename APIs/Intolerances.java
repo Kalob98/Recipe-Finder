@@ -11,7 +11,7 @@ package APIs;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class Intolerance {
+public class Intolerances {
 
     public static ObservableList loadIntolerance() {
         ObservableList<String> intolerance = FXCollections.observableArrayList();
