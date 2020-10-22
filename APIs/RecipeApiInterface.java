@@ -12,6 +12,8 @@ package APIs;
 public interface RecipeApiInterface {
     public int loadRecipeId(String _cuisine, String _inlcudedIngredients, 
             String _excludedIngredients, String _Intolerances);
+    
+    public String randomRecipe();
             
     /*
     public int loadRecipeIdByCuisine(String _cuisine);

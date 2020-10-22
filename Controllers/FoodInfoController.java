@@ -87,10 +87,6 @@ public class FoodInfoController implements Initializable {
 
     private void loadData() {
         cuisineChoiceBox.getItems().addAll(Cuisines.loadCuisines());
-        
-        //this causes the program to have an error and not go to the FoodInfoScene
-        //includedItemsComboBox.getItems().addAll(Ingredients.loadIngredients());
-        //excludedItemsComboBox.getItems().addAll(Ingredients.loadIngredients());
     }
 
 }
