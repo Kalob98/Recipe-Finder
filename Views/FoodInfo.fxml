@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<<<<<<< HEAD
 <?import javafx.scene.control.CheckBox?>
+=======
+>>>>>>> master
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<<<<<<< HEAD
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.FoodInfoController">
+=======
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="Controllers.FoodInfoController">
+>>>>>>> master
    <children>
       <Text layoutX="355.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cuisine" textAlignment="CENTER" wrappingWidth="90.287109375">
          <font>
@@ -25,8 +33,9 @@
             <Font size="14.0" />
          </font>
       </Text>
+<<<<<<< HEAD
       <Button fx:id="randomButton" layoutX="357.0" layoutY="334.0" mnemonicParsing="false" onAction="#randomButton" prefHeight="35.0" prefWidth="85.0" text="Search" />
-      <Button fx:id="recipesButton" layoutX="357.0" layoutY="388.0" mnemonicParsing="false" onAction="#searchButton" prefHeight="35.0" prefWidth="85.0" text="Random" />
+      <Button fx:id="recipesButton" layoutX="357.0" layoutY="388.0" mnemonicParsing="false" onAction="#recipesButton" prefHeight="35.0" prefWidth="85.0" text="Random" />
       <Button fx:id="backButton" layoutX="358.0" layoutY="439.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="85.0" text="Back" />
       <CheckBox layoutX="129.0" layoutY="149.0" mnemonicParsing="false" text="Poultry" />
       <CheckBox layoutX="129.0" layoutY="174.0" mnemonicParsing="false" text="Red Meat" />
@@ -36,5 +45,9 @@
       <CheckBox layoutX="572.0" layoutY="174.0" mnemonicParsing="false" text="Anything Green" />
       <CheckBox layoutX="572.0" layoutY="198.0" mnemonicParsing="false" text="Nuts" />
       <CheckBox layoutX="572.0" layoutY="224.0" mnemonicParsing="false" text="Meats" />
+=======
+      <Button fx:id="randomButton" layoutX="357.0" layoutY="391.0" mnemonicParsing="false" onAction="#randomButton" prefHeight="38.0" prefWidth="86.0" text="Random" />
+      <Button fx:id="recipesButton" layoutX="357.0" layoutY="441.0" mnemonicParsing="false" onAction="#recipesButton" prefHeight="38.0" prefWidth="86.0" text="Recipes" />
+>>>>>>> master
    </children>
 </AnchorPane>
