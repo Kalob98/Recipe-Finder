@@ -9,26 +9,31 @@ package Controllers;
  *
  * Last updated 10/20/20
  */
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 import APIs.cuisines;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import APIs.ingredients;
+import javafx.scene.control.ComboBox;
 
 public class FoodInfoController implements Initializable {
 
     @FXML
     private ChoiceBox<String> cuisineChoiceBox;
+    @FXML
+    private ComboBox<String> includedItemsComboBox;
+    @FXML
+    private ComboBox<String> excludedItemsComboBox;
     @FXML
     private Button randomButton;
     @FXML
@@ -48,8 +53,14 @@ public class FoodInfoController implements Initializable {
     }
 
     @FXML
-    private void randomButton(ActionEvent _event) {
-        //applies search with no constraints
+    private void randomButton(ActionEvent _event) throws IOException {
+        Parent infoParent1 = FXMLLoader.load(getClass().getResource("/Views/RecipeScene.fxml"));
+        Scene infoScene1 = new Scene(infoParent1);
+
+        Stage window = (Stage) ((Node) _event.getSource()).getScene().getWindow();
+
+        window.setScene(infoScene1);
+        window.show();
     }
 
     @FXML
@@ -76,6 +87,10 @@ public class FoodInfoController implements Initializable {
 
     private void loadData() {
         cuisineChoiceBox.getItems().addAll(cuisines.loadCuisines());
+        
+        //this causes the program to have an error and not go to the FoodInfoScene
+        //includedItemsComboBox.getItems().addAll(ingredients.loadIngredients());
+        //excludedItemsComboBox.getItems().addAll(ingredients.loadIngredients());
     }
 
 }

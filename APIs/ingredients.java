@@ -6,7 +6,7 @@ package APIs;
  *
  * @author Kalob Reinholz
  *
- * Last updated 10/20/20
+ * Last updated 10/21/20
  */
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,6 +24,7 @@ public class ingredients {
         String Cheese = "Cheese";
         String Chicken = "Chicken";
         String Eggs = "Eggs";
+        String Fish = "Fish";
         String Flour = "Flour";
         String Milk = "Milk";
         String Onions = "Onions";
@@ -32,7 +33,7 @@ public class ingredients {
         String Rice = "Rice";
         String Tomatoes = "Tomatoes";
         
-        ingredients.addAll(NULL, Almonds, Beef, Cheese, Chicken, Eggs, Flour, 
+        ingredients.addAll(NULL, Almonds, Beef, Cheese, Chicken, Eggs, Fish, Flour, 
                 Milk, Onions, Pork, Potatoes, Rice, Tomatoes);
 
         return ingredients;
