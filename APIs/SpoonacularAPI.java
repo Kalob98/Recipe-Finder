@@ -19,14 +19,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class spoonacularAPI {
+public class SpoonacularAPI {
 
     private static HttpURLConnection connection;
 
     public static void main(String[] args) {
         String baseURL = "https://api.spoonacular.com/recipes/complexSearch?";
         String query = "cuisine=italian&includeIngredients=chicken";
-        String key = apiKeys.kalob_ApiKey();
+        String key = ApiKeys.kalob_ApiKey();
 
         String finalAPI = (baseURL + query + key);
 
@@ -65,11 +65,11 @@ public class spoonacularAPI {
         }
 
         catch (MalformedURLException ex) {
-            Logger.getLogger(spoonacularAPI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SpoonacularAPI.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         catch (IOException | JSONException ex) {
-            Logger.getLogger(spoonacularAPI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SpoonacularAPI.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         connection.disconnect();
