@@ -8,7 +8,7 @@ package APIs;
  * Last updated 10/20/20
  */
 
-public class apiKeys {
+public class ApiKeys {
 
     public static String kalob_ApiKey(){
         String kalob_ApiKey = "&apiKey=eb6531f544da4fce92deb6c85f667510";

@@ -12,7 +12,7 @@ package APIs;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class cuisines {
+public class Cuisines {
 
     public static ObservableList loadCuisines() {
         ObservableList<String> cuisineOptions = FXCollections.observableArrayList();

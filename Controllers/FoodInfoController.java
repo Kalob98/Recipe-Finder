@@ -22,8 +22,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
-import APIs.cuisines;
-import APIs.ingredients;
+import APIs.Cuisines;
+import APIs.Ingredients;
 import javafx.scene.control.ComboBox;
 
 public class FoodInfoController implements Initializable {
@@ -86,11 +86,11 @@ public class FoodInfoController implements Initializable {
     }
 
     private void loadData() {
-        cuisineChoiceBox.getItems().addAll(cuisines.loadCuisines());
+        cuisineChoiceBox.getItems().addAll(Cuisines.loadCuisines());
         
         //this causes the program to have an error and not go to the FoodInfoScene
-        //includedItemsComboBox.getItems().addAll(ingredients.loadIngredients());
-        //excludedItemsComboBox.getItems().addAll(ingredients.loadIngredients());
+        //includedItemsComboBox.getItems().addAll(Ingredients.loadIngredients());
+        //excludedItemsComboBox.getItems().addAll(Ingredients.loadIngredients());
     }
 
 }

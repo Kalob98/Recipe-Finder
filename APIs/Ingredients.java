@@ -11,7 +11,7 @@ package APIs;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class ingredients {
+public class Ingredients {
 
     public static ObservableList loadIngredients() {
         ObservableList<String> ingredients = FXCollections.observableArrayList();
