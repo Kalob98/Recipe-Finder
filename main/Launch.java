@@ -5,6 +5,7 @@ import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -17,11 +18,12 @@ public class Launch extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/Views/HomeScene.fxml"));
-
+        
         Scene scene = new Scene(root);
 
         //stage.setMaximized(true);
         stage.setTitle("Recipe Finder");
+        stage.getIcons().add(new Image("/assets/ChickenLeg.png"));
         stage.setScene(scene);
         stage.show();
     }

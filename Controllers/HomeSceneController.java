@@ -16,6 +16,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -52,7 +53,7 @@ public class HomeSceneController implements Initializable {
         Scene infoScene = new Scene(infoParent);
 
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
+        
         window.setScene(infoScene);
         window.show();
     }

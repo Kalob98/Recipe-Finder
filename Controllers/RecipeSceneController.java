@@ -42,7 +42,7 @@ public class RecipeSceneController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         webEngine = webView.getEngine();
-        webEngine.load("https://www.google.com/");
+        webEngine.load("https://spoonacular.com/Poached-Prawns-with-Fettuccine-and-French-String-Beans-656506");
     }    
 
     @FXML

@@ -23,7 +23,7 @@ public class apiKeys {
     }
     
     public static String brody_ApiKey(){
-        String brody_ApiKey = "&apiKey=";
+        String brody_ApiKey = "&apiKey=75fcd0479bea47309a72c5d332483fac";
         
         return brody_ApiKey;
     }

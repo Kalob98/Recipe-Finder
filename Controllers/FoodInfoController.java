@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
+import APIs.cuisines;
 
 /**
  * FXML Controller class
@@ -28,15 +29,7 @@ import javafx.stage.Stage;
  * @author Brody
  */
 public class FoodInfoController implements Initializable {
-    
-    ObservableList<String> cuisineChoiceList = FXCollections.observableArrayList("Italian","Mexican","American","German","Japanese","Chinese");
-    ObservableList<String> itemsChoiceList = FXCollections.observableArrayList("Meat");
-    
-            
-    @FXML
-    private ComboBox<String> includedItemsComboBox;
-    @FXML
-    private ComboBox<String> excludedItemsComboBox;
+
     @FXML
     private ChoiceBox<String> cuisineChoiceBox;
     @FXML
@@ -47,7 +40,7 @@ public class FoodInfoController implements Initializable {
     private Button backButton;
 
     public FoodInfoController() {
-        
+
     }
 
     /**
@@ -55,10 +48,8 @@ public class FoodInfoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //excludedItemsComboBox.setItems(itemsChoiceList);
-        cuisineChoiceBox.setItems(cuisineChoiceList);
-        //includedItemsComboBox.setItems(itemsChoiceList);
-    }    
+        loadData();
+    }
 
     @FXML
     private void randomButton(ActionEvent event) throws IOException {
@@ -70,7 +61,6 @@ public class FoodInfoController implements Initializable {
         window.setScene(infoScene1);
         window.show();
     }
-
 
     @FXML
     private void back(ActionEvent event) throws IOException {
@@ -93,5 +83,8 @@ public class FoodInfoController implements Initializable {
         window.setScene(infoScene);
         window.show();
     }
-    
+
+    private void loadData() {
+        cuisineChoiceBox.getItems().addAll(cuisines.loadCuisines());
+    }
 }
