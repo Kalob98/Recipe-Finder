@@ -8,7 +8,7 @@ package APIs;
  * Last updated 10/20/20
  */
 
-public class apiKeys {
+public class ApiKeys {
 
     public static String kalob_ApiKey(){
         String kalob_ApiKey = "&apiKey=eb6531f544da4fce92deb6c85f667510";
@@ -23,7 +23,7 @@ public class apiKeys {
     }
     
     public static String brody_ApiKey(){
-        String brody_ApiKey = "&apiKey=";
+        String brody_ApiKey = "&apiKey=75fcd0479bea47309a72c5d332483fac";
         
         return brody_ApiKey;
     }

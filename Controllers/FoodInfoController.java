@@ -9,32 +9,39 @@ package Controllers;
  *
  * Last updated 10/20/20
  */
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.stage.Stage;
-import APIs.cuisines;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.stage.Stage;
+import APIs.Cuisines;
+import APIs.Ingredients;
+import javafx.scene.control.ComboBox;
 
 public class FoodInfoController implements Initializable {
 
+    private String apiURL;
     @FXML
     private ChoiceBox<String> cuisineChoiceBox;
+    @FXML
+    private ComboBox<String> includedItemsComboBox;
+    @FXML
+    private ComboBox<String> excludedItemsComboBox;
     @FXML
     private Button randomButton;
     @FXML
     private Button searchButton;
     @FXML
     private Button backButton;
+    
 
     /**
      * Initializes the controller class.
@@ -48,8 +55,14 @@ public class FoodInfoController implements Initializable {
     }
 
     @FXML
-    private void randomButton(ActionEvent _event) {
-        //applies search with no constraints
+    private void randomButton(ActionEvent _event) throws IOException {
+        Parent infoParent1 = FXMLLoader.load(getClass().getResource("/Views/RecipeScene.fxml"));
+        Scene infoScene1 = new Scene(infoParent1);
+
+        Stage window = (Stage) ((Node) _event.getSource()).getScene().getWindow();
+
+        window.setScene(infoScene1);
+        window.show();
     }
 
     @FXML
@@ -75,7 +88,7 @@ public class FoodInfoController implements Initializable {
     }
 
     private void loadData() {
-        cuisineChoiceBox.getItems().addAll(cuisines.loadCuisines());
+        cuisineChoiceBox.getItems().addAll(Cuisines.loadCuisines());
     }
 
 }
