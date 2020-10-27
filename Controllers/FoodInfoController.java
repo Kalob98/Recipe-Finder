@@ -28,6 +28,7 @@ import javafx.scene.control.ComboBox;
 
 public class FoodInfoController implements Initializable {
 
+    private String apiURL;
     @FXML
     private ChoiceBox<String> cuisineChoiceBox;
     @FXML
@@ -40,6 +41,7 @@ public class FoodInfoController implements Initializable {
     private Button searchButton;
     @FXML
     private Button backButton;
+    
 
     /**
      * Initializes the controller class.
