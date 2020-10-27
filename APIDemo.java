@@ -43,7 +43,7 @@ public class APIDemo {
             }
             reader.close();
 
-            System.out.println(responseContent.toString());
+            //System.out.println(responseContent.toString());
 
             JSONObject obj = new JSONObject(responseContent.toString());
             JSONArray array = obj.getJSONArray("results");
@@ -57,10 +57,7 @@ public class APIDemo {
             Logger.getLogger(APIDemo.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        catch (IOException ex) {
-            Logger.getLogger(APIDemo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        catch (JSONException ex) {
+        catch (IOException | JSONException ex) {
             Logger.getLogger(APIDemo.class.getName()).log(Level.SEVERE, null, ex);
         }
 
