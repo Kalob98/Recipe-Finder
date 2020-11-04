@@ -1,4 +1,4 @@
-package APIs;
+package utils;
 
 /**
  * Class that creates a list of some ingredients spoonacular API offers to add
