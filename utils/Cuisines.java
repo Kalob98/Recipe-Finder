@@ -1,4 +1,4 @@
-package APIs;
+package utils;
 
 /**
  * Class that creates a list of all cuisines spoonacular API offers to add to

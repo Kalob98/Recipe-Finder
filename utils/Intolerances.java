@@ -1,4 +1,4 @@
-package APIs;
+package utils;
 
 /**
  * Class that creates a list of all intolerances spoonacular API offers to add
