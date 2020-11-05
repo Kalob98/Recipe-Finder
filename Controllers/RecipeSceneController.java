@@ -1,11 +1,11 @@
 package Controllers;
 
 /**
- * """"""NEEDS EXPLAINATION"""""""
+ * This controller is for the RecipeScene, a recipe is shown through a webview.
  *
- * @author Brody
+ * @author Brodrick Grimm
  *
- * Last updated 10/20/20
+ * Last updated 10/28/20
  */
 import java.io.IOException;
 import java.net.URL;
@@ -32,6 +32,8 @@ public class RecipeSceneController implements Initializable {
     private Button saveButton;
     @FXML
     private Button backButton;
+    @FXML
+    private String recipeURL;
 
     /**
      * Initializes the controller class.
@@ -42,12 +44,23 @@ public class RecipeSceneController implements Initializable {
     @Override
     public void initialize(URL _url, ResourceBundle _rb) {
         webEngine = webView.getEngine();
-        webEngine.load("https://www.google.com/");
+        webEngine.load("https://spoonacular.com/recipes/pan-seared-duck-with-blueberry-glaze-654468");
+    }
+
+    @FXML
+    private void home(ActionEvent _event) throws IOException {
+        Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/HomeScene.fxml"));
+        Scene infoScene = new Scene(infoParent);
+
+        Stage window = (Stage) ((Node) _event.getSource()).getScene().getWindow();
+
+        window.setScene(infoScene);
+        window.show();
     }
 
     @FXML
     private void back(ActionEvent _event) throws IOException {
-        Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/HomeScene.fxml"));
+        Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/RecipeChoice.fxml"));
         Scene infoScene = new Scene(infoParent);
 
         Stage window = (Stage) ((Node) _event.getSource()).getScene().getWindow();
