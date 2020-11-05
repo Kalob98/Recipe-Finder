@@ -5,7 +5,7 @@ package APIs;
  *
  * @author Kalob Reinholz
  *
- * Last updated 10/29/20
+ * Last updated 11/5/20
  */
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,21 +22,28 @@ import org.json.JSONObject;
 public class SpoonacularAPI implements RecipeApiInterface {
 
     private static HttpURLConnection connection;
-    private static String baseURL = "https://api.spoonacular.com/recipes/";
-    private static String complexSearch = "complexSearch?";
-    private static String random = "random?number=1";
-    private static String number = "&number=6"; //max number of results allowed to be displayed
-    private static String kalobKey = ApiKeys.kalob_ApiKey();
-    private static String brodyKey = ApiKeys.brody_ApiKey();
-    private static String hengKey = ApiKeys.heng_ApiKey();
+    private static final String baseURL = "https://api.spoonacular.com/recipes/"; //move to util in future
+    private static final String complexSearch = "complexSearch?";
+    private static final String random = "random?number=1";
+    private static final String number = "&number=6"; //max number of results allowed to be displayed
+    private static final String kalobKey = ApiKeys.kalob_ApiKey();
+    private static final String brodyKey = ApiKeys.brody_ApiKey();
+    private static final String hengKey = ApiKeys.heng_ApiKey();
+    private static final int TITLE_LOCATION = 0;
+    private static final int URL_LOCATION = 1;
+    private static final int ID_LOCATION = 2;
 
     /**
-     *
+     * Method that calls the spoonacular API to find multiple recipes using
+     * user requirement.
+     * 
      * @param _cuisine
      * @param _includedIngredients
      * @param _excludedIngredients
      * @param _intolerances
      * @return
+     * 
+     * Intolerances are not included in our program as of now. It can be added in the future.
      */
     @Override
     public String[] loadRecipeId(String _cuisine, String _includedIngredients, String _excludedIngredients, String _intolerances) {
@@ -74,11 +81,13 @@ public class SpoonacularAPI implements RecipeApiInterface {
 
             JSONObject obj = new JSONObject(responseContent.toString());
             JSONArray array = obj.getJSONArray("results");
+            
             int arrCounter = 0;
-            for (int i = 0; i < obj.getInt("totalResults"); i++) {
+            for (int i = 0; i < obj.getInt("number"); i++) {
                 JSONObject temp = array.getJSONObject(i);
-                recipesInfo[arrCounter] = (String) temp.get("id");
-                recipesInfo[arrCounter += 1] = (String) temp.get("title");
+                recipesInfo[arrCounter] = (String) temp.get("title");
+                recipesInfo[arrCounter += 1] = (String) temp.get("id");
+                arrCounter += 1;
             }
         }
 
@@ -95,15 +104,20 @@ public class SpoonacularAPI implements RecipeApiInterface {
         return recipesInfo;
     }
 
+    /**
+     * Method that calls the spoonacular API to find a random recipe.
+     * 
+     * @return 
+     */
     @Override
-    public String randomRecipe() {
+    public String[] randomRecipe() {
         String randomRecipe = (baseURL + random + kalobKey);
 
         BufferedReader reader;
         String line;
         StringBuilder responseContent = new StringBuilder();
 
-        String recipeUrl = null;
+        String[] randomRecipeInfo = null;
 
         try {
             URL url = new URL(randomRecipe);
@@ -125,16 +139,13 @@ public class SpoonacularAPI implements RecipeApiInterface {
 
             reader.close();
 
-            //prints the json info
-            //System.out.println(responseContent.toString());
             JSONObject obj = new JSONObject(responseContent.toString());
             JSONArray array = obj.getJSONArray("recipes");
             JSONObject temp = array.getJSONObject(0);
 
-            recipeUrl = temp.getString("sourceUrl");
-
-            //prints the info in the .get()
-            //System.out.println(temp.get("id"));
+            randomRecipeInfo[TITLE_LOCATION] = temp.getString("title");
+            randomRecipeInfo[URL_LOCATION] = temp.getString("spoonacularSourceUrl");
+            randomRecipeInfo[ID_LOCATION] =  temp.getString("id");
         }
 
         catch (MalformedURLException ex) {
@@ -147,6 +158,7 @@ public class SpoonacularAPI implements RecipeApiInterface {
 
         connection.disconnect();
 
-        return recipeUrl;
+        // return title and spoonacularSourceURL
+        return randomRecipeInfo;
     }
 }
