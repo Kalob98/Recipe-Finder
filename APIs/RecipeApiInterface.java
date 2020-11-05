@@ -22,5 +22,5 @@ public interface RecipeApiInterface {
     public String[] loadRecipeId(String _cuisine, String _inlcudedIngredients, 
             String _excludedIngredients, String _Intolerances);
     
-    public String randomRecipe();
+    public String[] randomRecipe();
 }
