@@ -20,7 +20,7 @@ public class SpoonacularAdapter {
      * @param _intolerances
      * @return
      */
-    public Recipe[] getRecipe(String _cuisine, String _inlcudedIngredients,
+    public static Recipe[] getRecipe(String _cuisine, String _inlcudedIngredients,
             String _excludedIngredients, String _intolerances) {
 
         String[] recipe;
@@ -39,7 +39,7 @@ public class SpoonacularAdapter {
         return recipeObjects;
     }
 
-    public Recipe getRandomRecipe() {
+    public static Recipe getRandomRecipe() {
 
         String[] random;
         SpoonacularAPI makeCall = new SpoonacularAPI();

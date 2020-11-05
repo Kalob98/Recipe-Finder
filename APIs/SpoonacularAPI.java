@@ -32,6 +32,7 @@ public class SpoonacularAPI implements RecipeApiInterface {
     private static final int TITLE_LOCATION = 0;
     private static final int URL_LOCATION = 1;
     private static final int ID_LOCATION = 2;
+    private static final int RANDOM_RECIPE_ARRAY_SIZE = 3;
 
     /**
      * Method that calls the spoonacular API to find multiple recipes using user
@@ -119,7 +120,7 @@ public class SpoonacularAPI implements RecipeApiInterface {
         String line;
         StringBuilder responseContent = new StringBuilder();
 
-        String[] randomRecipeInfo = null;
+        String[] randomRecipeInfo = new String[RANDOM_RECIPE_ARRAY_SIZE];
 
         try {
             URL url = new URL(randomRecipe);
