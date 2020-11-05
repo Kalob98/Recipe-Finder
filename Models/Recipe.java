@@ -9,6 +9,7 @@ package Models;
  */
 public class Recipe {
 
+    private static final Recipe INSTANCE = new Recipe();
     private String title;
     private String url;
     private String id;
@@ -25,6 +26,13 @@ public class Recipe {
         this.url = createURL();
     }
 
+    public Recipe() {
+    }
+
+    public static Recipe getInstance() {
+        return INSTANCE;
+    }
+
     //will change when "baseURL" is moved
     public String createURL() {
         url = "https://api.spoonacular.com/recipes/" + this.title.replace(' ', '-') + "-" + this.id;
@@ -36,7 +44,7 @@ public class Recipe {
         return this.title;
     }
 
-    public String getID(){
+    public String getID() {
         return this.id;
     }
 

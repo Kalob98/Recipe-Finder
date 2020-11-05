@@ -9,6 +9,8 @@ package Controllers;
  *
  * Last updated 11/05/20
  */
+import APIs.SpoonacularAdapter;
+import Models.Recipe;
 import com.sun.deploy.util.StringUtils;
 import java.io.IOException;
 import java.net.URL;
@@ -104,6 +106,12 @@ public class FoodInfoController implements Initializable {
 
     @FXML
     private void randomRecipe(ActionEvent _event) throws IOException {
+
+        Recipe temp = Recipe.getInstance();
+        Recipe temp2 = SpoonacularAdapter.getRandomRecipe();
+        temp.setUrl(temp2.getUrl());
+        temp.setTitle(temp2.getTitle());
+
         Parent infoParent1 = FXMLLoader.load(getClass().getResource("/Views/RecipeScene.fxml"));
         Scene infoScene1 = new Scene(infoParent1);
 
@@ -111,6 +119,8 @@ public class FoodInfoController implements Initializable {
 
         window.setScene(infoScene1);
         window.show();
+        System.out.println(temp.getTitle());
+        System.out.println(temp.getUrl());
     }
 
     @FXML
