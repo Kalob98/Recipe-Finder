@@ -6,7 +6,7 @@ package APIs;
  *
  * @author Kalob Reinholz
  *
- * Last Updated 10/29/20
+ * Last Updated 11/5/20
  */
 import Models.Recipe;
 
@@ -28,9 +28,9 @@ public class SpoonacularAdapter {
         SpoonacularAPI makeCall = new SpoonacularAPI();
 
         recipe = makeCall.loadRecipeId(_cuisine, _inlcudedIngredients, _excludedIngredients, _intolerances);
-        
+
         int arrCounter = 0;
-        for(int i = 0; i < (recipe.length / 2); i++){
+        for (int i = 0; i < (recipe.length / 2); i++) {
             Recipe temp = new Recipe(recipe[arrCounter], recipe[arrCounter += 1]);
             recipeObjects[i] = temp;
             arrCounter += 1;
@@ -46,7 +46,7 @@ public class SpoonacularAdapter {
 
         random = makeCall.randomRecipe();
 
-        Recipe randomRecipe = new Recipe(random[0], random[1]);
+        Recipe randomRecipe = new Recipe(random[0], random[1], random[2]);
 
         //[title, sourceurl]
         return randomRecipe;

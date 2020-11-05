@@ -8,7 +8,6 @@ package utils;
  *
  * Last updated 10/20/20
  */
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -16,7 +15,7 @@ public class Cuisines {
 
     public static ObservableList loadCuisines() {
         ObservableList<String> cuisineOptions = FXCollections.observableArrayList();
-        
+
         cuisineOptions.removeAll(cuisineOptions);
 
         String NULL = "";
@@ -46,13 +45,13 @@ public class Cuisines {
         String Spanish = "Spanish";
         String Thai = "Thai";
         String Vietnamese = "Vietnamese";
-        
-        cuisineOptions.addAll(NULL, African, American, British, Cajun, Caribbean, 
-                Chinese, EasternEuropean, European, French, German, Greek, 
-                Indian, Irish, Italian, Japanese, Jewish, Korean, LatinAmerican, 
-                Mediterranean, Mexican, MiddleEastern, Nordic, Southern, 
+
+        cuisineOptions.addAll(NULL, African, American, British, Cajun, Caribbean,
+                Chinese, EasternEuropean, European, French, German, Greek,
+                Indian, Irish, Italian, Japanese, Jewish, Korean, LatinAmerican,
+                Mediterranean, Mexican, MiddleEastern, Nordic, Southern,
                 Spanish, Thai, Vietnamese);
-        
+
         return cuisineOptions;
     }
 }
