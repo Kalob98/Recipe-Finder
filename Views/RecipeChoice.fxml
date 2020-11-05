@@ -14,7 +14,7 @@
       <Label fx:id="recipeFourLabel" layoutX="60.0" layoutY="250.0" prefHeight="17.0" prefWidth="361.0" text="Label" />
       <Label fx:id="recipeFiveLabel" layoutX="60.0" layoutY="290.0" prefHeight="17.0" prefWidth="361.0" text="Label" />
       <Label fx:id="recipeSixLabel" layoutX="60.0" layoutY="330.0" prefHeight="17.0" prefWidth="361.0" text="Label" />
-      <Button fx:id="recipeOneButton" layoutX="614.0" layoutY="126.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="recipeOneButton" layoutX="614.0" layoutY="126.0" mnemonicParsing="false" onAction="#RecipeOneChosen" text="Button" />
       <Button fx:id="recipeTwoButton" layoutX="614.0" layoutY="166.0" mnemonicParsing="false" text="Button" />
       <Button fx:id="recipeThreeButton" layoutX="614.0" layoutY="206.0" mnemonicParsing="false" text="Button" />
       <Button fx:id="recipeFourButton" layoutX="614.0" layoutY="246.0" mnemonicParsing="false" text="Button" />
@@ -25,5 +25,6 @@
             <Font size="18.0" />
          </font>
       </Text>
+      <Button fx:id="backButton" layoutX="325.0" layoutY="432.0" mnemonicParsing="false" onAction="#back" text="Back" />
    </children>
 </AnchorPane>
