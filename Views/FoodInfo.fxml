@@ -98,7 +98,7 @@
                         <Insets />
                      </VBox.margin>
                   </CheckBox>
-                  <CheckBox fx:id="exclude2" layoutX="10.0" layoutY="187.0" mnemonicParsing="false" text="Beef">
+                  <CheckBox fx:id="exclude2" mnemonicParsing="false" text="Beef">
                      <padding>
                         <Insets top="5.0" />
                      </padding>
@@ -108,8 +108,11 @@
                   </CheckBox>
                   <CheckBox fx:id="exclude3" mnemonicParsing="false" text="Cheese">
                      <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
                         <Insets top="5.0" />
-                     </VBox.margin></CheckBox>
+                     </padding></CheckBox>
                   <CheckBox fx:id="exclude4" mnemonicParsing="false" text="Chicken">
                      <padding>
                         <Insets top="5.0" />
@@ -130,10 +133,13 @@
                         <Insets top="5.0" />
                      </padding>
                      <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </CheckBox>
-                  <CheckBox fx:id="exclude8" mnemonicParsing="false" text="Milk" />
+                  <CheckBox fx:id="exclude8" mnemonicParsing="false" text="Milk">
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding></CheckBox>
                   <CheckBox fx:id="exclude9" mnemonicParsing="false" text="Onions">
                      <padding>
                         <Insets top="5.0" />

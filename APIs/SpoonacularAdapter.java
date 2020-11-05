@@ -6,8 +6,10 @@ package APIs;
  *
  * @author Kalob Reinholz
  *
- * Last Updated 10/29/20
+ * Last Updated 11/5/20
  */
+import Models.Recipe;
+
 public class SpoonacularAdapter {
 
     /**
@@ -18,24 +20,35 @@ public class SpoonacularAdapter {
      * @param _intolerances
      * @return
      */
-    public String[] getRecipe(String _cuisine, String _inlcudedIngredients,
+    public Recipe[] getRecipe(String _cuisine, String _inlcudedIngredients,
             String _excludedIngredients, String _intolerances) {
 
         String[] recipe;
+        Recipe[] recipeObjects = null;
         SpoonacularAPI makeCall = new SpoonacularAPI();
 
         recipe = makeCall.loadRecipeId(_cuisine, _inlcudedIngredients, _excludedIngredients, _intolerances);
 
-        return recipe;
+        int arrCounter = 0;
+        for (int i = 0; i < (recipe.length / 2); i++) {
+            Recipe temp = new Recipe(recipe[arrCounter], recipe[arrCounter += 1]);
+            recipeObjects[i] = temp;
+            arrCounter += 1;
+        }
+
+        return recipeObjects;
     }
 
-    public String getRandomRecipe() {
+    public Recipe getRandomRecipe() {
 
-        String random;
+        String[] random;
         SpoonacularAPI makeCall = new SpoonacularAPI();
 
         random = makeCall.randomRecipe();
 
-        return random;
+        Recipe randomRecipe = new Recipe(random[0], random[1], random[2]);
+
+        //[title, sourceurl]
+        return randomRecipe;
     }
 }

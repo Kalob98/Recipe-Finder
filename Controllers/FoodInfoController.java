@@ -216,9 +216,9 @@ public class FoodInfoController implements Initializable {
     }
 
     private String getCuisine() {
-        if(this.cuisineChoiceBox.getValue() == null){
-        return "";
-    }
+        if (this.cuisineChoiceBox.getValue() == null) {
+            return "";
+        }
         return this.cuisineChoiceBox.getValue();
     }
 }

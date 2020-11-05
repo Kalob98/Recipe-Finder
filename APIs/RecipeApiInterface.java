@@ -6,7 +6,7 @@ package APIs;
  * @author Brody
  * @author Kalob Reinholz
  *
- * Last updated 10/20/20
+ * Last updated 11/5/20
  */
 
 public interface RecipeApiInterface {
@@ -22,5 +22,5 @@ public interface RecipeApiInterface {
     public String[] loadRecipeId(String _cuisine, String _inlcudedIngredients, 
             String _excludedIngredients, String _Intolerances);
     
-    public String randomRecipe();
+    public String[] randomRecipe();
 }
