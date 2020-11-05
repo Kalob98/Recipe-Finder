@@ -5,8 +5,9 @@ package Controllers;
  *
  * @author Brodrick Grimm
  *
- * Last updated 10/28/20
+ * Last updated 11/05/20
  */
+import Models.Recipe;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -43,8 +44,9 @@ public class RecipeSceneController implements Initializable {
      */
     @Override
     public void initialize(URL _url, ResourceBundle _rb) {
+        Recipe temp = Recipe.getInstance();
         webEngine = webView.getEngine();
-        webEngine.load("https://spoonacular.com/recipes/pan-seared-duck-with-blueberry-glaze-654468");
+        webEngine.load(temp.getUrl());
     }
 
     @FXML
