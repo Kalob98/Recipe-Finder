@@ -1,9 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controllers;
+
+/**
+ * This controller allows the selection of one out of six recipes.
+ *
+ * @author Brodrick Grimm
+ *
+ * Last updated 10/28/20
+ */
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,7 +33,7 @@ import javafx.stage.Stage;
  * @author Brody
  */
 public class RecipeChoiceController implements Initializable {
-    
+
     @FXML
     private Label recipeOneLabel;
     @FXML
@@ -55,6 +58,8 @@ public class RecipeChoiceController implements Initializable {
     private Button recipeFiveButton;
     @FXML
     private Button recipeSixButton;
+    @FXML
+    private Button backButton;
 
     /**
      * Initializes the controller class.
@@ -62,6 +67,27 @@ public class RecipeChoiceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+
+    @FXML
+    private void RecipeOneChosen(ActionEvent _event) throws IOException {
+        Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/RecipeScene.fxml"));
+        Scene infoScene = new Scene(infoParent);
+
+        Stage window = (Stage) ((Node) _event.getSource()).getScene().getWindow();
+
+        window.setScene(infoScene);
+        window.show();
+    }
+
+    @FXML
+    private void back(ActionEvent _event) throws IOException {
+        Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/FoodInfo.fxml"));
+        Scene infoScene = new Scene(infoParent);
+
+        Stage window = (Stage) ((Node) _event.getSource()).getScene().getWindow();
+
+        window.setScene(infoScene);
+        window.show();
+    }
 }
