@@ -36,6 +36,10 @@ public class Recipe {
         return this.title;
     }
 
+    public String getID(){
+        return this.id;
+    }
+
     public String getUrl() {
         return this.url;
     }
