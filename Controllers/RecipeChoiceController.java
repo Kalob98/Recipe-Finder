@@ -7,7 +7,6 @@ package Controllers;
  *
  * Last updated 10/28/20
  */
-
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -25,7 +24,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
 
 /**
  * FXML Controller class
