@@ -1,34 +1,42 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Models;
 
 /**
+ * Recipe Class used to store title, url, and id of each recipe.
  *
- * @author Brody
+ * @author Brodrick Grimm
+ *
+ * Last updated 11/05/20
  */
 public class Recipe {
 
-
     private String title;
     private String url;
+    private String id;
 
-    public Recipe(String _id, String _title, String _url){
+    public Recipe(String _title, String _url, String _id) {
         this.title = _title;
         this.url = _url;
+        this.id = _id;
     }
 
+    public Recipe(String _title, String _id) {
+        this.id = _id;
+        this.title = _title;
+        this.url = createURL();
+    }
 
-
-
+    //will change when "baseURL" is moved
+    public String createURL() {
+        url = "https://api.spoonacular.com/recipes/" + this.title.replace(' ', '-') + "-" + this.id;
+        return url;
+    }
 
     //=================  GETTERS ===============
-    public String getTitle(){
+    public String getTitle() {
         return this.title;
     }
-    public String getUrl(){
+
+    public String getUrl() {
         return this.url;
     }
 

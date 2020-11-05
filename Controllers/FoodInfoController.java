@@ -7,7 +7,7 @@ package Controllers;
  * @author Brodrick Grimm
  * @author Kalob Reinholz
  *
- * Last updated 10/28/20
+ * Last updated 11/05/20
  */
 import com.sun.deploy.util.StringUtils;
 import java.io.IOException;
@@ -133,6 +133,7 @@ public class FoodInfoController implements Initializable {
 
         window.setScene(infoScene);
         window.show();
+        System.out.println(this.getCuisine());
     }
 
     private void loadData() {
@@ -215,6 +216,9 @@ public class FoodInfoController implements Initializable {
     }
 
     private String getCuisine() {
+        if(this.cuisineChoiceBox.getValue() == null){
+        return "";
+    }
         return this.cuisineChoiceBox.getValue();
     }
 }
