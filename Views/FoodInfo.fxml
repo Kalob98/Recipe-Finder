@@ -28,8 +28,8 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Button fx:id="randomButton" layoutX="357.0" layoutY="334.0" mnemonicParsing="false" onAction="#randomButton" prefHeight="35.0" prefWidth="85.0" text="Search" />
-      <Button fx:id="recipesButton" layoutX="357.0" layoutY="388.0" mnemonicParsing="false" onAction="#recipesButton" prefHeight="35.0" prefWidth="85.0" text="Random" />
+      <Button fx:id="searchButton" layoutX="357.0" layoutY="334.0" mnemonicParsing="false" onAction="#searchRecipe" prefHeight="35.0" prefWidth="85.0" text="Search" />
+      <Button fx:id="randomButton" layoutX="357.0" layoutY="388.0" mnemonicParsing="false" onAction="#randomRecipe" prefHeight="35.0" prefWidth="85.0" text="Random" />
       <Button fx:id="backButton" layoutX="358.0" layoutY="439.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="85.0" text="Back" />
       <ScrollPane hbarPolicy="NEVER" layoutX="96.0" layoutY="129.0" prefHeight="155.0" prefWidth="121.0" vbarPolicy="ALWAYS">
          <content>
