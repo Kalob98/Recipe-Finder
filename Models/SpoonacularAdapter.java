@@ -1,4 +1,4 @@
-package APIs;
+package Models;
 
 /**
  * Class used to make call to the spoonacular API. Passes information here to
@@ -6,7 +6,7 @@ package APIs;
  *
  * @author Kalob Reinholz
  *
- * Last Updated 11/5/20
+ * Last Updated 11/12/20
  */
 import Models.Recipe;
 
@@ -39,6 +39,10 @@ public class SpoonacularAdapter {
         return recipeObjects;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public static Recipe getRandomRecipe() {
 
         String[] random;

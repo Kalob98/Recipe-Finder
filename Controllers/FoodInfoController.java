@@ -9,7 +9,7 @@ package Controllers;
  *
  * Last updated 11/05/20
  */
-import APIs.SpoonacularAdapter;
+import Models.SpoonacularAdapter;
 import Models.Recipe;
 import com.sun.deploy.util.StringUtils;
 import java.io.IOException;
