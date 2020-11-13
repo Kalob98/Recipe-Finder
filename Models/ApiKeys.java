@@ -1,11 +1,11 @@
-package APIs;
+package Models;
 
 /**
  * Class that stores all api keys that the app uses. includes &apikey=
  *
  * @author Kalob Reinholz
  *
- * Last updated 10/20/20
+ * Last updated 11/12/20
  */
 public class ApiKeys {
 
