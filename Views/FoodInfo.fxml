@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" styleClass="anchor" stylesheets="@../StyleSheets/GeneralScene.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.FoodInfoController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" styleClass="anchor" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.FoodInfoController">
    <children>
       <Text layoutX="355.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cuisine" textAlignment="CENTER" wrappingWidth="90.287109375">
          <font>
@@ -28,53 +28,56 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Button fx:id="randomButton" layoutX="357.0" layoutY="334.0" mnemonicParsing="false" onAction="#randomButton" prefHeight="35.0" prefWidth="85.0" text="Search" />
-      <Button fx:id="searchButton" layoutX="357.0" layoutY="388.0" mnemonicParsing="false" onAction="#searchButton" prefHeight="35.0" prefWidth="85.0" text="Random" />
+      <Button fx:id="searchButton" layoutX="357.0" layoutY="334.0" mnemonicParsing="false" onAction="#searchRecipe" prefHeight="35.0" prefWidth="85.0" text="Search" />
+      <Button fx:id="randomButton" layoutX="357.0" layoutY="388.0" mnemonicParsing="false" onAction="#randomRecipe" prefHeight="35.0" prefWidth="85.0" text="Random" />
       <Button fx:id="backButton" layoutX="358.0" layoutY="439.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="85.0" text="Back" />
       <ScrollPane hbarPolicy="NEVER" layoutX="96.0" layoutY="129.0" prefHeight="155.0" prefWidth="121.0" vbarPolicy="ALWAYS">
          <content>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <CheckBox fx:id="includeAlmonds" mnemonicParsing="false" text="Almonds" />
-                  <CheckBox fx:id="includeChicken" mnemonicParsing="false" text="Chicken">
+                  <CheckBox fx:id="include1" mnemonicParsing="false" text="Almonds" />
+                  <CheckBox fx:id="include2" mnemonicParsing="false" text="Beef">
                      <padding>
                         <Insets top="5.0" />
                      </padding></CheckBox>
-                  <CheckBox fx:id="includeDairy" mnemonicParsing="false" text="Dairy">
+                  <CheckBox fx:id="include3" mnemonicParsing="false" text="Cheese">
                      <padding>
                         <Insets top="5.0" />
                      </padding>
                   </CheckBox>
-                  <CheckBox fx:id="includeEggs" mnemonicParsing="false" text="Eggs">
+                  <CheckBox fx:id="include4" mnemonicParsing="false" text="Chicken">
                      <padding>
                         <Insets top="5.0" />
                      </padding>
                   </CheckBox>
-                  <CheckBox fx:id="includeGrains" mnemonicParsing="false" text="Grains">
+                  <CheckBox fx:id="include5" mnemonicParsing="false" text="Eggs">
                      <padding>
                         <Insets top="5.0" />
                      </padding>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="Leafy Greens">
+                  <CheckBox fx:id="include6" mnemonicParsing="false" text="Fish">
                      <padding>
                         <Insets top="5.0" />
                      </padding>
                      <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="Peanuts" />
-                  <CheckBox mnemonicParsing="false" text="Potatoes">
+                  <CheckBox fx:id="include7" mnemonicParsing="false" text="Flour">
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding></CheckBox>
+                  <CheckBox fx:id="include8" mnemonicParsing="false" text="Milk">
                      <padding>
                         <Insets top="5.0" />
                      </padding>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="Red Meat">
+                  <CheckBox fx:id="include9" mnemonicParsing="false" text="Onions">
                      <padding>
                         <Insets top="5.0" />
                      </padding>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="Tomatoes">
+                  <CheckBox fx:id="include10" mnemonicParsing="false" text="Pork">
                      <padding>
                         <Insets top="5.0" />
                      </padding>
@@ -90,12 +93,12 @@
          <content>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <CheckBox mnemonicParsing="false" text="Almonds">
+                  <CheckBox fx:id="exclude1" mnemonicParsing="false" text="Almonds">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                   </CheckBox>
-                  <CheckBox layoutX="10.0" layoutY="187.0" mnemonicParsing="false" text="Any Vegetable">
+                  <CheckBox fx:id="exclude2" mnemonicParsing="false" text="Beef">
                      <padding>
                         <Insets top="5.0" />
                      </padding>
@@ -103,45 +106,46 @@
                         <Insets />
                      </VBox.margin>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="Chicken">
+                  <CheckBox fx:id="exclude3" mnemonicParsing="false" text="Cheese">
                      <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
                         <Insets top="5.0" />
-                     </VBox.margin></CheckBox>
-                  <CheckBox mnemonicParsing="false" text="Dairy">
+                     </padding></CheckBox>
+                  <CheckBox fx:id="exclude4" mnemonicParsing="false" text="Chicken">
                      <padding>
                         <Insets top="5.0" />
                      </padding>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="Eggs">
+                  <CheckBox fx:id="exclude5" mnemonicParsing="false" text="Eggs">
                      <padding>
                         <Insets top="5.0" />
                      </padding>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="Grains">
+                  <CheckBox fx:id="exclude6" mnemonicParsing="false" text="Fish">
                      <padding>
                         <Insets top="5.0" />
                      </padding>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="Leafy Greens">
+                  <CheckBox fx:id="exclude7" mnemonicParsing="false" text="Flour">
                      <padding>
                         <Insets top="5.0" />
                      </padding>
                      <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="Peanuts" />
-                  <CheckBox mnemonicParsing="false" text="Potatoes">
+                  <CheckBox fx:id="exclude8" mnemonicParsing="false" text="Milk">
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding></CheckBox>
+                  <CheckBox fx:id="exclude9" mnemonicParsing="false" text="Onions">
                      <padding>
                         <Insets top="5.0" />
                      </padding>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="Red Meat">
-                     <padding>
-                        <Insets top="5.0" />
-                     </padding>
-                  </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="Tomatoes">
+                  <CheckBox fx:id="exclude10" mnemonicParsing="false" text="Pork">
                      <padding>
                         <Insets top="5.0" />
                      </padding>
