@@ -4,10 +4,10 @@ package Controllers;
  * This controller is the first scene. This is where you can learn how to use
  * the app, look at saved recipes, and start to find a recipe.
  *
- * @author Brody
+ * @author Brodrick Grimm
  * @author Kalob Reinholz
  *
- * Last updated 10/20/20
+ * Last updated 10/28/20
  */
 import java.io.IOException;
 import java.net.URL;

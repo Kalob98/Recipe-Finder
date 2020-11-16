@@ -3,7 +3,7 @@ package Controllers;
 /**
  * This controller explains how to use the app.
  *
- * @author Brody
+ * @author Brodrick Grimm
  *
  * Last updated 10/20/20
  */
