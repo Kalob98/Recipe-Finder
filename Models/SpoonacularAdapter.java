@@ -27,7 +27,7 @@ public class SpoonacularAdapter {
         Recipe[] recipeObjects = null;
         SpoonacularAPI makeCall = new SpoonacularAPI();
 
-        recipe = makeCall.loadRecipeId(_cuisine, _inlcudedIngredients, _excludedIngredients, _intolerances);
+        recipe = makeCall.targetedRecipe(_cuisine, _inlcudedIngredients, _excludedIngredients, _intolerances);
 
         int arrCounter = 0;
         for (int i = 0; i < (recipe.length / 2); i++) {

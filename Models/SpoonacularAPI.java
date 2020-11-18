@@ -26,7 +26,7 @@ public class SpoonacularAPI implements RecipeApiInterface {
 
     //used for creating the urls used to make api calls
     private static final String baseURL = SpoonacularBaseUrl.baseUrl();
-    private static final String complexSearch = "complexSearch?"; //used for loadRecipeId method
+    private static final String complexSearch = "complexSearch?"; //used for targetedRecipe method
     private static final String random = "random?number=1"; //used for randomRecipe method
     private static final String number = "&number=6"; //max number of results allowed to be displayed
 
@@ -59,13 +59,14 @@ public class SpoonacularAPI implements RecipeApiInterface {
      * in the future.
      */
     @Override
-    public String[] loadRecipeId(String _cuisine, String _includedIngredients, String _excludedIngredients, String _intolerances) {
+    public String[] targetedRecipe(String _cuisine, String _includedIngredients, String _excludedIngredients, String _intolerances) {
         String recipe = (baseURL + complexSearch + "cuisine=" + _cuisine
                 + "&includeIngredients=" + _includedIngredients
                 + "&excludeIngredients=" + _excludedIngredients
                 + "&intolerances=" + _intolerances
                 + number + kalobKey);
 
+        //array that is returned with recipes information
         String[] recipesInfo = null;
 
         try {
