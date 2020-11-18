@@ -43,7 +43,7 @@ public class SpoonacularAPI implements RecipeApiInterface {
 
     private static BufferedReader reader;
     private static String line;
-    private static final StringBuilder responseContent = new StringBuilder();
+    private static StringBuilder responseContent = new StringBuilder();
 
     /**
      * Method that calls the spoonacular API to find multiple recipes using user
@@ -135,6 +135,8 @@ public class SpoonacularAPI implements RecipeApiInterface {
      * @param recipe 
      */
     private void loadApi(String recipe) {
+        
+        responseContent = new StringBuilder();
         
         try {
             URL url = new URL(recipe);
