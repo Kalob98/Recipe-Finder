@@ -7,7 +7,7 @@ package Controllers;
  * @author Brodrick Grimm
  * @author Kalob Reinholz
  *
- * Last updated 11/05/20
+ * Last updated 11/17/20
  */
 import Models.SpoonacularAdapter;
 import Models.Recipe;
