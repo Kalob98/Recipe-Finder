@@ -7,9 +7,9 @@ package Controllers;
  * @author Brodrick Grimm
  * @author Kalob Reinholz
  *
- * Last updated 11/05/20
+ * Last updated 11/17/20
  */
-import APIs.SpoonacularAdapter;
+import Models.SpoonacularAdapter;
 import Models.Recipe;
 import com.sun.deploy.util.StringUtils;
 import java.io.IOException;
@@ -33,6 +33,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.layout.VBox;
+import utils.Ingredients;
+import utils.Ingredients.INGREDIENTS;
 
 public class FoodInfoController implements Initializable {
 
@@ -47,49 +50,13 @@ public class FoodInfoController implements Initializable {
     @FXML
     private Button backButton;
     @FXML
-    private CheckBox include1;
+    private VBox includeVBox;
     @FXML
-    private CheckBox include2;
+    private VBox excludeVBox;
     @FXML
-    private CheckBox include3;
+    private CheckBox included[];
     @FXML
-    private CheckBox include4;
-    @FXML
-    private CheckBox include5;
-    @FXML
-    private CheckBox include6;
-    @FXML
-    private CheckBox include7;
-    @FXML
-    private CheckBox include8;
-    @FXML
-    private CheckBox include9;
-    @FXML
-    private CheckBox include10;
-    @FXML
-    private CheckBox exclude1;
-    @FXML
-    private CheckBox exclude2;
-    @FXML
-    private CheckBox exclude3;
-    @FXML
-    private CheckBox exclude4;
-    @FXML
-    private CheckBox exclude5;
-    @FXML
-    private CheckBox exclude6;
-    @FXML
-    private CheckBox exclude7;
-    @FXML
-    private CheckBox exclude8;
-    @FXML
-    private CheckBox exclude9;
-    @FXML
-    private CheckBox exclude10;
-    @FXML
-    private CheckBox[] included[];
-    @FXML
-    private CheckBox[] excluded[];
+    private CheckBox excluded[];
 
     /**
      * Initializes the controller class.
@@ -101,6 +68,9 @@ public class FoodInfoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         includeString = "";
         excludeString = "";
+        included = new CheckBox[INGREDIENTS.values().length];
+        excluded = new CheckBox[INGREDIENTS.values().length];
+        setUpVboxes();
         loadData();
     }
 
@@ -144,6 +114,22 @@ public class FoodInfoController implements Initializable {
         window.setScene(infoScene);
         window.show();
         System.out.println(this.getCuisine());
+        System.out.println(this.getIncluded());
+    }
+
+    private void setUpVboxes() {
+
+        int enumSize = INGREDIENTS.values().length;
+        for (int i = 0; i < enumSize; i++) {
+            CheckBox box = new CheckBox(INGREDIENTS.values()[i].name());
+            CheckBox box2 = new CheckBox(INGREDIENTS.values()[i].name());
+            box.setOnAction(e->box2.setSelected(false));
+            box2.setOnAction(e->box.setSelected(false));
+            included[i] = box;
+            excluded[i] = box2;
+            includeVBox.getChildren().add(box);
+            excludeVBox.getChildren().add(box2);
+        }
     }
 
     private void loadData() {
@@ -152,75 +138,24 @@ public class FoodInfoController implements Initializable {
 //=================  GETTERS ===============
 
     private String getIncluded() {
-        if (include1.isSelected()) {
-            this.includeString = includeString + "Almonds";
+        for (CheckBox box : included) {
+            if (box.isSelected()) {
+                includeString = includeString + box.getText();
+                includeString = includeString + ",";
+            }
         }
-        if (include2.isSelected()) {
-            this.includeString = includeString + ",Beef";
-        }
-        if (include3.isSelected()) {
-            this.includeString = includeString + ",Cheese";
-        }
-        if (include4.isSelected()) {
-            this.includeString = includeString + ",Chicken";
-        }
-        if (include5.isSelected()) {
-            this.includeString = includeString + ",Eggs";
-        }
-        if (include6.isSelected()) {
-            this.includeString = includeString + ",Fish";
-        }
-        if (include7.isSelected()) {
-            this.includeString = includeString + ",Flour";
-        }
-        if (include8.isSelected()) {
-            this.includeString = includeString + ",Milk";
-        }
-        if (include9.isSelected()) {
-            this.includeString = includeString + ",Onions";
-        }
-        if (include10.isSelected()) {
-            this.includeString = includeString + ",Pork";
-        }
-        if (includeString.charAt(0) == ',') {
-            return includeString.substring(1);
+        if(includeString.charAt(includeString.length()-1) == ','){
+            includeString = includeString.substring(0,includeString.length()-1);
         }
         return includeString;
     }
 
     private String getExcluded() {
-        if (exclude1.isSelected()) {
-            this.excludeString = excludeString + "Almonds";
-        }
-        if (exclude2.isSelected()) {
-            this.excludeString = excludeString + ",Beef";
-        }
-        if (exclude3.isSelected()) {
-            this.excludeString = excludeString + ",Cheese";
-        }
-        if (exclude4.isSelected()) {
-            this.excludeString = excludeString + ",Chicken";
-        }
-        if (exclude5.isSelected()) {
-            this.excludeString = excludeString + ",Eggs";
-        }
-        if (exclude6.isSelected()) {
-            this.excludeString = excludeString + ",Fish";
-        }
-        if (exclude7.isSelected()) {
-            this.excludeString = excludeString + ",Flour";
-        }
-        if (exclude8.isSelected()) {
-            this.excludeString = excludeString + ",Milk";
-        }
-        if (exclude9.isSelected()) {
-            this.excludeString = excludeString + ",Onions";
-        }
-        if (exclude10.isSelected()) {
-            this.excludeString = excludeString + ",Pork";
-        }
-        if (excludeString.charAt(0) == ',') {
-            return excludeString.substring(1);
+        for (CheckBox box : excluded) {
+            if (box.isSelected()) {
+                excludeString = excludeString + box.getText();
+                excludeString = excludeString + ",";
+            }
         }
         return excludeString;
     }

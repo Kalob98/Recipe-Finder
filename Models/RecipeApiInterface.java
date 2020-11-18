@@ -1,4 +1,4 @@
-package APIs;
+package Models;
 
 /**
  * This is the interface 

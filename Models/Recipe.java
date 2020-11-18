@@ -5,8 +5,10 @@ package Models;
  *
  * @author Brodrick Grimm
  *
- * Last updated 11/05/20
+ * Last updated 11/12/20
  */
+import utils.SpoonacularBaseUrl;
+
 public class Recipe {
 
     private static final Recipe INSTANCE = new Recipe();
@@ -35,7 +37,8 @@ public class Recipe {
 
     //will change when "baseURL" is moved
     public String createURL() {
-        url = "https://api.spoonacular.com/recipes/" + this.title.replace(' ', '-') + "-" + this.id;
+        url = SpoonacularBaseUrl.baseUrl() + this.title.replace(' ', '-') 
+                + "-" + this.id;
         return url;
     }
 
