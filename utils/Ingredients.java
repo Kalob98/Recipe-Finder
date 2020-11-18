@@ -13,11 +13,13 @@ import javafx.collections.ObservableList;
 
 public class Ingredients {
 
+    public enum INGREDIENTS {Almonds,Beef,Cheese,Chicken,Eggs,Fish,Flour,Milk,Onions,Pork,Potatoes,Rice,Tomatoes};
+
     public static ObservableList loadIngredients() {
         ObservableList<String> ingredients = FXCollections.observableArrayList();
 
         ingredients.removeAll(ingredients);
-        
+
         String NULL = "";
         String Almonds = "Almonds";
         String Beef = "Beef";
@@ -32,8 +34,8 @@ public class Ingredients {
         String Potatoes = "Potatoes";
         String Rice = "Rice";
         String Tomatoes = "Tomatoes";
-        
-        ingredients.addAll(NULL, Almonds, Beef, Cheese, Chicken, Eggs, Fish, Flour, 
+
+        ingredients.addAll(NULL, Almonds, Beef, Cheese, Chicken, Eggs, Fish, Flour,
                 Milk, Onions, Pork, Potatoes, Rice, Tomatoes);
 
         return ingredients;
