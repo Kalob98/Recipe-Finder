@@ -5,7 +5,7 @@ package Controllers;
  *
  * @author Brodrick Grimm
  *
- * Last updated 10/28/20
+ * Last updated 11/17/20
  */
 import Models.Recipe;
 import java.net.URL;
@@ -32,11 +32,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author Brody
- */
 public class RecipeChoiceController implements Initializable {
 
     @FXML
