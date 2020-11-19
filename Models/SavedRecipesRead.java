@@ -15,8 +15,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * This class is to read the text files that are saved in the desktop
+ * 
  * @author Heng Tan
+ * 
+ * Last Updated 11/19/2020
  */
 public class SavedRecipesRead {
 

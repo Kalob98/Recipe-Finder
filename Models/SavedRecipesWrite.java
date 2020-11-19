@@ -14,8 +14,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 /**
- *
+ * This class is to write the text files and save it into the text file
+ * 
  * @author Heng Tan
+ * 
+ * Last Updated 11/19/2020
  */
 public class SavedRecipesWrite {
 
