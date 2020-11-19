@@ -12,6 +12,7 @@ package Models;
 public interface RecipeApiInterface {
     
     /**
+     * Method that controllers call to access API
      * 
      * @param _cuisine
      * @param _inlcudedIngredients
@@ -19,8 +20,13 @@ public interface RecipeApiInterface {
      * @param _Intolerances
      * @return 
      */
-    public String[] loadRecipeId(String _cuisine, String _inlcudedIngredients, 
+    public String[] targetedRecipe(String _cuisine, String _inlcudedIngredients, 
             String _excludedIngredients, String _Intolerances);
     
+    /**
+     * Method that controllers call randomRecipes from API
+     * 
+     * @return 
+     */
     public String[] randomRecipe();
 }

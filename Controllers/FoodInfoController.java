@@ -11,7 +11,8 @@ package Controllers;
  */
 import Models.SpoonacularAdapter;
 import Models.Recipe;
-//import com.sun.deploy.util.StringUtils;
+import Models.RecipeArray;
+import com.sun.deploy.util.StringUtils;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,6 +42,7 @@ public class FoodInfoController implements Initializable {
 
     private String includeString;
     private String excludeString;
+    private String intolerances;
     @FXML
     private ChoiceBox<String> cuisineChoiceBox;
     @FXML
@@ -68,15 +70,23 @@ public class FoodInfoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         includeString = "";
         excludeString = "";
+        intolerances = "";
+
         included = new CheckBox[INGREDIENTS.values().length];
         excluded = new CheckBox[INGREDIENTS.values().length];
         setUpVboxes();
         loadData();
     }
 
+    /**
+     *
+     * @param _event
+     * @throws IOException
+     */
     @FXML
     private void randomRecipe(ActionEvent _event) throws IOException {
 
+        //change temp
         Recipe temp = Recipe.getInstance();
         Recipe temp2 = SpoonacularAdapter.getRandomRecipe();
         temp.setUrl(temp2.getUrl());
@@ -93,19 +103,19 @@ public class FoodInfoController implements Initializable {
         System.out.println(temp.getUrl());
     }
 
-    @FXML
-    private void back(ActionEvent _event) throws IOException {
-        Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/HomeScene.fxml"));
-        Scene infoScene = new Scene(infoParent);
-
-        Stage window = (Stage) ((Node) _event.getSource()).getScene().getWindow();
-
-        window.setScene(infoScene);
-        window.show();
-    }
-
+    /**
+     *
+     * @param _event
+     * @throws IOException
+     */
     @FXML
     private void searchRecipe(ActionEvent _event) throws IOException {
+        RecipeArray temp = RecipeArray.getInstance();
+        System.out.println(this.getExcluded());
+        System.out.println(this.getIncluded());
+        System.out.println(this.getCuisine());
+        temp.setRecipes(SpoonacularAdapter.getRecipe(this.getCuisine(), this.getIncluded(), this.getExcluded()));
+        temp.setFlag(RecipeArray.FROM_SEARCH);
         Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/RecipeChoice.fxml"));
         Scene infoScene = new Scene(infoParent);
 
@@ -117,14 +127,33 @@ public class FoodInfoController implements Initializable {
         System.out.println(this.getIncluded());
     }
 
+    /**
+     *
+     * @param _event
+     * @throws IOException
+     */
+    @FXML
+    private void back(ActionEvent _event) throws IOException {
+        Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/HomeScene.fxml"));
+        Scene infoScene = new Scene(infoParent);
+
+        Stage window = (Stage) ((Node) _event.getSource()).getScene().getWindow();
+
+        window.setScene(infoScene);
+        window.show();
+    }
+
+    /**
+     *
+     */
     private void setUpVboxes() {
 
         int enumSize = INGREDIENTS.values().length;
         for (int i = 0; i < enumSize; i++) {
             CheckBox box = new CheckBox(INGREDIENTS.values()[i].name());
             CheckBox box2 = new CheckBox(INGREDIENTS.values()[i].name());
-            box.setOnAction(e->box2.setSelected(false));
-            box2.setOnAction(e->box.setSelected(false));
+            box.setOnAction(e -> box2.setSelected(false));
+            box2.setOnAction(e -> box.setSelected(false));
             included[i] = box;
             excluded[i] = box2;
             includeVBox.getChildren().add(box);
@@ -132,6 +161,9 @@ public class FoodInfoController implements Initializable {
         }
     }
 
+    /**
+     *
+     */
     private void loadData() {
         cuisineChoiceBox.getItems().addAll(Cuisines.loadCuisines());
     }
@@ -144,8 +176,8 @@ public class FoodInfoController implements Initializable {
                 includeString = includeString + ",";
             }
         }
-        if(includeString.charAt(includeString.length()-1) == ','){
-            includeString = includeString.substring(0,includeString.length()-1);
+        if (includeString.charAt(includeString.length() - 1) == ',') {
+            includeString = includeString.substring(0, includeString.length() - 1);
         }
         return includeString;
     }
