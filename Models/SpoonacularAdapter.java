@@ -24,13 +24,15 @@ public class SpoonacularAdapter {
             String _excludedIngredients, String _intolerances) {
 
         String[] recipe;
-        Recipe[] recipeObjects = null;
+        Recipe[] recipeObjects = new Recipe[0];
         SpoonacularAPI makeCall = new SpoonacularAPI();
 
         recipe = makeCall.targetedRecipe(_cuisine, _inlcudedIngredients, _excludedIngredients, _intolerances);
-
+        int recipeObjectSize = recipe.length / 2;
+        recipeObjects = new Recipe[recipeObjectSize];
+        
         int arrCounter = 0;
-        for (int i = 0; i < (recipe.length / 2); i++) {
+        for (int i = 0; i < recipeObjectSize; i++) {
             Recipe temp = new Recipe(recipe[arrCounter], recipe[arrCounter += 1]);
             recipeObjects[i] = temp;
             arrCounter += 1;
@@ -49,6 +51,7 @@ public class SpoonacularAdapter {
         SpoonacularAPI makeCall = new SpoonacularAPI();
 
         random = makeCall.randomRecipe();
+        System.out.println(random.length);
 
         Recipe randomRecipe = new Recipe(random[0], random[1], random[2]);
 
