@@ -111,8 +111,6 @@ public class FoodInfoController implements Initializable {
 
         window.setScene(infoScene);
         window.show();
-        //System.out.println(this.getCuisine());
-        //System.out.println(this.getIncluded());
     }
 
     /**
