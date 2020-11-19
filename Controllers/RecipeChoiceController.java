@@ -8,6 +8,7 @@ package Controllers;
  * Last updated 11/17/20
  */
 import Models.Recipe;
+import Models.RecipeArray;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -39,17 +40,24 @@ public class RecipeChoiceController implements Initializable {
     @FXML
     private VBox recipesVbox;
 
-    private Recipe[] recipes = {new Recipe("Oreo Cookie Ball Turkeys","https://spoonacular.com/recipes/oreo-cookie-balls-%E2%80%93-thanksgiving-turkey-715449","715449")} ;
+    private Recipe[] recipes;
+    private int flag;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        prepVbox(recipes);
+        this.recipes = RecipeArray.getInstance().getRecipes();
+        this.flag = RecipeArray.getInstance().getFlag();
+        prepVbox(this.recipes);
     }
 
+    /**
+     *populates the VBox with the clickable recipes
+     * @param recipes
+     */
     private void prepVbox(Recipe[] recipes) {
-        for (int i = 0; i < recipes.length ; i++) {
+        for (int i = 0; i < this.recipes.length ; i++) {
             Hyperlink hLink = new Hyperlink();
-            hLink.setText(recipes[i].getTitle());
+            hLink.setText(this.recipes[i].getTitle());
             hLink.setOnAction(e -> {
                 try {
                     hyperLinkClicked();
@@ -61,6 +69,10 @@ public class RecipeChoiceController implements Initializable {
         }
     }
 
+    /**
+     *
+     * @throws IOException
+     */
     private void hyperLinkClicked() throws IOException {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/Views/RecipeScene.fxml"));
@@ -71,6 +83,11 @@ public class RecipeChoiceController implements Initializable {
         stage.show();
     }
 
+    /**
+     *
+     * @param _event
+     * @throws IOException
+     */
     @FXML
     private void RecipeChosen(ActionEvent _event) throws IOException {
         Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/RecipeScene.fxml"));
@@ -82,6 +99,11 @@ public class RecipeChoiceController implements Initializable {
         window.show();
     }
 
+    /**
+     *
+     * @param _event
+     * @throws IOException
+     */
     @FXML
     private void back(ActionEvent _event) throws IOException {
         Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/FoodInfo.fxml"));
