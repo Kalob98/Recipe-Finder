@@ -12,7 +12,6 @@ package Controllers;
 import Models.SpoonacularAdapter;
 import Models.Recipe;
 import Models.RecipeArray;
-import com.sun.deploy.util.StringUtils;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,15 +26,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 import utils.Cuisines;
-import utils.Ingredients;
-import utils.Cuisines;
-import utils.Ingredients;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableSet;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
-import utils.Ingredients;
 import utils.Ingredients.INGREDIENTS;
 
 public class FoodInfoController implements Initializable {
@@ -111,10 +103,12 @@ public class FoodInfoController implements Initializable {
     @FXML
     private void searchRecipe(ActionEvent _event) throws IOException {
         RecipeArray temp = RecipeArray.getInstance();
-        System.out.println(this.getExcluded());
-        System.out.println(this.getIncluded());
-        System.out.println(this.getCuisine());
-        temp.setRecipes(SpoonacularAdapter.getRecipe(this.getCuisine(), this.getIncluded(), this.getExcluded()));
+        
+        //System.out.println(this.getExcluded());
+        //System.out.println(this.getIncluded());
+        //System.out.println(this.getCuisine());
+        
+        temp.setRecipes(SpoonacularAdapter.getRecipe(this.getCuisine(), this.getIncluded(), this.getExcluded(), ""));
         temp.setFlag(RecipeArray.FROM_SEARCH);
         Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/RecipeChoice.fxml"));
         Scene infoScene = new Scene(infoParent);
@@ -123,8 +117,8 @@ public class FoodInfoController implements Initializable {
 
         window.setScene(infoScene);
         window.show();
-        System.out.println(this.getCuisine());
-        System.out.println(this.getIncluded());
+        //System.out.println(this.getCuisine());
+        //System.out.println(this.getIncluded());
     }
 
     /**
@@ -188,6 +182,9 @@ public class FoodInfoController implements Initializable {
                 excludeString = excludeString + box.getText();
                 excludeString = excludeString + ",";
             }
+        }
+        if (excludeString.charAt(excludeString.length() - 1) == ',') {
+            excludeString = excludeString.substring(0, excludeString.length() - 1);
         }
         return excludeString;
     }
