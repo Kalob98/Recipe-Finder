@@ -5,18 +5,24 @@
  */
 package Controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
- * @author Kalob Reinholz
+ * @author Heng Tan
  */
 public class SavedRecipesController implements Initializable {
 
@@ -33,19 +39,20 @@ public class SavedRecipesController implements Initializable {
     @FXML
     private Label recipeSixLabel;
     @FXML
-    private Button recipeOneButton;
+    private Button recipedeleteOne;
     @FXML
-    private Button recipeTwoButton;
+    private Button recipedeleteTwo;
     @FXML
-    private Button recipeThreeButton;
+    private Button recipedeleteThree;
     @FXML
-    private Button recipeFourButton;
+    private Button recipedeleteFour;
     @FXML
-    private Button recipeFiveButton;
+    private Button recipedeleteFive;
     @FXML
-    private Button recipeSixButton;
+    private Button recipedeleteSix;
     @FXML
     private Button backButton;
+    private Object _event;
 
     /**
      * Initializes the controller class.
@@ -60,7 +67,14 @@ public class SavedRecipesController implements Initializable {
     }
 
     @FXML
-    private void back(ActionEvent event) {
+    private void back(ActionEvent _event) throws IOException {
+        Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/HomeScene.fxml"));
+        Scene infoScene = new Scene(infoParent);
+
+        Stage window = (Stage) ((Node) _event.getSource()).getScene().getWindow();
+
+        window.setScene(infoScene);
+        window.show();
     }
 
     @FXML

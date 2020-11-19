@@ -46,6 +46,13 @@ public class HomeSceneController implements Initializable {
 
     @FXML
     private void prevRecipe(ActionEvent _event) throws IOException {
+        Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/SavedRecipes.fxml"));
+        Scene infoScene = new Scene(infoParent);
+
+        Stage window = (Stage) ((Node) _event.getSource()).getScene().getWindow();
+
+        window.setScene(infoScene);
+        window.show();
     }
 
     @FXML
