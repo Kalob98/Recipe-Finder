@@ -5,7 +5,7 @@ package Controllers;
  *
  * @author Brodrick Grimm
  *
- * Last updated 11/05/20
+ * Last updated 11/15/20
  */
 import Models.Recipe;
 import java.io.IOException;
@@ -35,6 +35,7 @@ public class RecipeSceneController implements Initializable {
     private Button backButton;
     @FXML
     private String recipeURL;
+    private Recipe recipe;
 
     /**
      * Initializes the controller class.
@@ -44,11 +45,16 @@ public class RecipeSceneController implements Initializable {
      */
     @Override
     public void initialize(URL _url, ResourceBundle _rb) {
-        Recipe temp = Recipe.getInstance();
+        this.recipe = Recipe.getInstance();
         webEngine = webView.getEngine();
-        webEngine.load(temp.getUrl());
+        webEngine.load(this.recipe.getUrl());
     }
 
+    /**
+     *
+     * @param _event
+     * @throws IOException
+     */
     @FXML
     private void home(ActionEvent _event) throws IOException {
         Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/HomeScene.fxml"));
@@ -60,6 +66,11 @@ public class RecipeSceneController implements Initializable {
         window.show();
     }
 
+    /**
+     *
+     * @param _event
+     * @throws IOException
+     */
     @FXML
     private void back(ActionEvent _event) throws IOException {
         Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/RecipeChoice.fxml"));
