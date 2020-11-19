@@ -34,6 +34,7 @@ public class RecipeSceneController implements Initializable {
     @FXML
     private Button backButton;
     @FXML
+    private Button closeButton;
     private String recipeURL;
     private Recipe recipe;
 
@@ -48,8 +49,10 @@ public class RecipeSceneController implements Initializable {
         this.recipe = Recipe.getInstance();
         webEngine = webView.getEngine();
         webEngine.load(this.recipe.getUrl());
-        System.out.println(recipe.getUrl());
+        //System.out.println(recipe.getUrl());
     }
+
+
 
     /**
      *
@@ -57,29 +60,8 @@ public class RecipeSceneController implements Initializable {
      * @throws IOException
      */
     @FXML
-    private void home(ActionEvent _event) throws IOException {
-        Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/HomeScene.fxml"));
-        Scene infoScene = new Scene(infoParent);
-
-        Stage window = (Stage) ((Node) _event.getSource()).getScene().getWindow();
-
-        window.setScene(infoScene);
-        window.show();
-    }
-
-    /**
-     *
-     * @param _event
-     * @throws IOException
-     */
-    @FXML
-    private void back(ActionEvent _event) throws IOException {
-        Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/RecipeChoice.fxml"));
-        Scene infoScene = new Scene(infoParent);
-
-        Stage window = (Stage) ((Node) _event.getSource()).getScene().getWindow();
-
-        window.setScene(infoScene);
-        window.show();
+    private void close(ActionEvent _event) throws IOException {
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
     }
 }
