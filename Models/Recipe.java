@@ -11,7 +11,7 @@ import utils.SpoonacularBaseUrl;
 
 public class Recipe {
 
-    private static final Recipe INSTANCE = new Recipe();
+    private static Recipe INSTANCE = new Recipe();
     private String title;
     private String url;
     private String id;
@@ -37,7 +37,7 @@ public class Recipe {
 
     //will change when "baseURL" is moved
     public String createURL() {
-        url = SpoonacularBaseUrl.baseUrl() + this.title.replace(' ', '-') 
+        url = SpoonacularBaseUrl.baseUrl() + this.title.replace(' ', '-')
                 + "-" + this.id;
         return url;
     }
