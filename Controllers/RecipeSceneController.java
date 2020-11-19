@@ -48,6 +48,7 @@ public class RecipeSceneController implements Initializable {
         this.recipe = Recipe.getInstance();
         webEngine = webView.getEngine();
         webEngine.load(this.recipe.getUrl());
+        System.out.println(recipe.getUrl());
     }
 
     /**

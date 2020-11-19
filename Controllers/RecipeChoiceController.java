@@ -9,18 +9,13 @@ package Controllers;
  */
 import Models.Recipe;
 import Models.RecipeArray;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import Models.SpoonacularAdapter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -74,6 +69,12 @@ public class RecipeChoiceController implements Initializable {
      * @throws IOException
      */
     private void hyperLinkClicked() throws IOException {
+        
+        Recipe temp = Recipe.getInstance();
+        Recipe temp2 = SpoonacularAdapter.getRandomRecipe();
+        temp.setUrl(temp2.getUrl());
+        temp.setTitle(temp2.getTitle());
+        
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/Views/RecipeScene.fxml"));
         Scene scene = new Scene(root);
