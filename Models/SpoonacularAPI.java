@@ -5,7 +5,7 @@ package Models;
  *
  * @author Kalob Reinholz
  *
- * Last updated 11/12/20
+ * Last updated 11/18/20
  */
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -64,23 +64,28 @@ public class SpoonacularAPI implements RecipeApiInterface {
                 + "&includeIngredients=" + _includedIngredients
                 + "&excludeIngredients=" + _excludedIngredients
                 + "&intolerances=" + _intolerances
-                + number + kalobKey);
+                + number + hengKey);
 
         //array that is returned with recipes information
-        String[] recipesInfo = null;
-
+        String[] recipesInfo = new String[0];
         try {
             
             loadApi(recipe);
 
             JSONObject obj = new JSONObject(responseContent.toString());
             JSONArray array = obj.getJSONArray("results");
+            JSONObject temp;
+            
+            int total = obj.getInt("totalResults");
+            recipesInfo = new String[(total * 2)];
 
             int arrCounter = 0;
-            for (int i = 0; i < obj.getInt("number"); i++) {
-                JSONObject temp = array.getJSONObject(i);
+            for (int i = 0; i < total; i++) {
+                temp = array.getJSONObject(i);
+                
                 recipesInfo[arrCounter] = (String) temp.get("title");
-                recipesInfo[arrCounter += 1] = (String) temp.get("id");
+                recipesInfo[arrCounter += 1] = temp.get("id").toString();
+                
                 arrCounter += 1;
             }
         }
