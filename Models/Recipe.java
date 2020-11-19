@@ -15,6 +15,7 @@ public class Recipe {
     private String title;
     private String url;
     private String id;
+    private boolean isSavedFlag;
 
     public Recipe(String _title, String _url, String _id) {
         this.title = _title;
@@ -55,6 +56,10 @@ public class Recipe {
         return this.url;
     }
 
+    public boolean getPrevViewFlag(){
+        return this.isSavedFlag;
+    }
+
     //=================  SETTERS ===============
     public void setTitle(String title) {
         this.title = title;
@@ -62,5 +67,9 @@ public class Recipe {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public void setPrevViewFlag(boolean _isSavedFlag){
+        this.isSavedFlag = _isSavedFlag;
     }
 }
