@@ -30,20 +30,19 @@ public class SpoonacularAdapter {
         recipe = makeCall.targetedRecipe(_cuisine, _inlcudedIngredients, _excludedIngredients, _intolerances);
         int recipeObjectSize = recipe.length / 2;
         recipeObjects = new Recipe[recipeObjectSize];
-        
+
         int arrCounter = 0;
         for (int i = 0; i < recipeObjectSize; i++) {
-            Recipe temp = new Recipe(recipe[arrCounter], recipe[arrCounter += 1]);
+            Recipe temp = new Recipe(recipe[arrCounter], recipe[arrCounter + 1]);
             recipeObjects[i] = temp;
-            arrCounter += 1;
+            arrCounter += 2;
         }
-
         return recipeObjects;
     }
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public static Recipe getRandomRecipe() {
 
