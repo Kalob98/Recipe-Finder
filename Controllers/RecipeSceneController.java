@@ -19,6 +19,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -35,6 +36,7 @@ public class RecipeSceneController implements Initializable {
     private Button backButton;
     @FXML
     private Button closeButton;
+    private VBox deleteBoxVBox;
     private String recipeURL;
     private Recipe recipe;
 
@@ -48,10 +50,19 @@ public class RecipeSceneController implements Initializable {
     public void initialize(URL _url, ResourceBundle _rb) {
         this.recipe = Recipe.getInstance();
         webEngine = webView.getEngine();
+        if(this.recipe.getIsSaved()){
+            createDeleteButton();
+        }
         webEngine.load(this.recipe.getUrl());
-        System.out.println(recipe.getUrl());
+        //System.out.println(recipe.getUrl());
     }
 
+    private void createDeleteButton(){
+        Button deleteButton = new Button("Un-Save");
+        deleteButton.setMaxWidth(125);
+        deleteButton.setMaxWidth(35);
+        deleteBoxVBox.getChildren().add(deleteButton);
+    }
 
 
     /**

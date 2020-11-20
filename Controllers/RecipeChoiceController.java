@@ -65,16 +65,16 @@ public class RecipeChoiceController implements Initializable {
     }
 
     /**
-     *
+     *Handles when the HyperLink is clicked
      * @throws IOException
      */
     private void hyperLinkClicked() throws IOException {
-        
+
         Recipe temp = Recipe.getInstance();
         Recipe temp2 = SpoonacularAdapter.getRandomRecipe();
         temp.setUrl(temp2.getUrl());
         temp.setTitle(temp2.getTitle());
-        
+
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/Views/RecipeScene.fxml"));
         Scene scene = new Scene(root);
@@ -82,22 +82,6 @@ public class RecipeChoiceController implements Initializable {
         stage.getIcons().add(new Image("assets/ChickenLeg.png"));
         stage.setScene(scene);
         stage.show();
-    }
-
-    /**
-     *
-     * @param _event
-     * @throws IOException
-     */
-    @FXML
-    private void RecipeChosen(ActionEvent _event) throws IOException {
-        Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/RecipeScene.fxml"));
-        Scene infoScene = new Scene(infoParent);
-
-        Stage window = (Stage) ((Node) _event.getSource()).getScene().getWindow();
-
-        window.setScene(infoScene);
-        window.show();
     }
 
     /**

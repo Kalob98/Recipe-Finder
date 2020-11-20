@@ -61,10 +61,7 @@ public class FoodInfoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        includeString = "";
-        excludeString = "";
-        intolerances = "";
-
+        clearStrings();
         included = new CheckBox[INGREDIENTS.values().length];
         excluded = new CheckBox[INGREDIENTS.values().length];
         setUpVboxes();
@@ -84,7 +81,7 @@ public class FoodInfoController implements Initializable {
         Recipe temp2 = SpoonacularAdapter.getRandomRecipe();
         temp.setUrl(temp2.getUrl());
         temp.setTitle(temp2.getTitle());
-
+        clearStrings();
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/Views/RecipeScene.fxml"));
         Scene scene = new Scene(root);
@@ -111,11 +108,10 @@ public class FoodInfoController implements Initializable {
 
         window.setScene(infoScene);
         window.show();
-        //System.out.println(this.getCuisine());
-        //System.out.println(this.getIncluded());
     }
 
     /**
+     * When back button clicked returns to the home scene
      *
      * @param _event
      * @throws IOException
@@ -132,7 +128,7 @@ public class FoodInfoController implements Initializable {
     }
 
     /**
-     *
+     * fills the include and exclude boxes with the checkboxes
      */
     private void setUpVboxes() {
 
@@ -147,6 +143,15 @@ public class FoodInfoController implements Initializable {
             includeVBox.getChildren().add(box);
             excludeVBox.getChildren().add(box2);
         }
+    }
+
+    /**
+     * Clears the instance strings
+     */
+    private void clearStrings() {
+        this.includeString = "";
+        this.excludeString = "";
+        this.intolerances = "";
     }
 
     /**

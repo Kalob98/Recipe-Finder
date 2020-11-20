@@ -51,7 +51,6 @@ public class SpoonacularAdapter {
         SpoonacularAPI makeCall = new SpoonacularAPI();
 
         random = makeCall.randomRecipe();
-        System.out.println(random.length);
 
         Recipe randomRecipe = new Recipe(random[0], random[1], random[2]);
 
