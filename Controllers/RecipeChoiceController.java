@@ -36,26 +36,29 @@ public class RecipeChoiceController implements Initializable {
     private VBox recipesVbox;
 
     private Recipe[] recipes;
-    private int flag;
+    private int test;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.recipes = RecipeArray.getInstance().getRecipes();
-        this.flag = RecipeArray.getInstance().getFlag();
         prepVbox(this.recipes);
     }
 
     /**
-     *populates the VBox with the clickable recipes
+     * populates the VBox with the clickable recipes
+     *
      * @param recipes
      */
     private void prepVbox(Recipe[] recipes) {
-        for (int i = 0; i < this.recipes.length ; i++) {
+        for (int i = 0; i < this.recipes.length; i++) {
             Hyperlink hLink = new Hyperlink();
             hLink.setText(this.recipes[i].getTitle());
+            hLink.setAccessibleText(recipes[i].getUrl());
+            Recipe temp = Recipe.getInstance();
+            temp.setUrl(recipes[i].getUrl());
             hLink.setOnAction(e -> {
                 try {
-                    hyperLinkClicked();
+                    hyperLinkClicked(hLink);
                 } catch (IOException ex) {
                     Logger.getLogger(RecipeChoiceController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -65,15 +68,18 @@ public class RecipeChoiceController implements Initializable {
     }
 
     /**
-     *Handles when the HyperLink is clicked
+     * Handles when the HyperLink is clicked
+     *
      * @throws IOException
      */
-    private void hyperLinkClicked() throws IOException {
+    private void hyperLinkClicked(Hyperlink _hLink) throws IOException {
 
         Recipe temp = Recipe.getInstance();
-        Recipe temp2 = SpoonacularAdapter.getRandomRecipe();
-        temp.setUrl(temp2.getUrl());
-        temp.setTitle(temp2.getTitle());
+        temp.setTitle(_hLink.getText());
+        temp.setUrl(_hLink.getAccessibleText());
+
+        System.out.println(_hLink.getAccessibleText());
+        System.out.println(_hLink.getText());
 
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/Views/RecipeScene.fxml"));

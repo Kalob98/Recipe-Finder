@@ -8,6 +8,7 @@ package Models;
  * Last updated 11/12/20
  */
 import utils.SpoonacularBaseUrl;
+import static utils.SpoonacularBaseUrl.baseUrlForUrlCreation;
 
 public class Recipe {
 
@@ -43,11 +44,14 @@ public class Recipe {
         return INSTANCE;
     }
 
-    //will change when "baseURL" is moved
+
     public String createURL() {
-        url = SpoonacularBaseUrl.baseUrl() + this.title.replace(' ', '-')
+        if(this.title != null){
+            url = baseUrlForUrlCreation + this.title.replace(' ', '-')
                 + "-" + this.id;
-        return url;
+            return url;
+        }
+        return "";
     }
 
     //=================  GETTERS ===============
