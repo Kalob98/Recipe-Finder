@@ -15,7 +15,14 @@ public class Recipe {
     private String title;
     private String url;
     private String id;
-    private boolean isSavedFlag;
+    private boolean isSaved;
+
+    public Recipe(String _title, String _url, String _id, boolean _isSaved) {
+        this.title = _title;
+        this.url = _url;
+        this.id = _id;
+        this.isSaved = _isSaved;
+    }
 
     public Recipe(String _title, String _url, String _id) {
         this.title = _title;
@@ -56,8 +63,8 @@ public class Recipe {
         return this.url;
     }
 
-    public boolean getPrevViewFlag(){
-        return this.isSavedFlag;
+    public boolean getIsSaved(){
+        return this.isSaved;
     }
 
     //=================  SETTERS ===============
@@ -69,7 +76,7 @@ public class Recipe {
         this.url = url;
     }
 
-    public void setPrevViewFlag(boolean _isSavedFlag){
-        this.isSavedFlag = _isSavedFlag;
+    public void setIsSaved(boolean _isSaved){
+        this.isSaved = _isSaved;
     }
 }
