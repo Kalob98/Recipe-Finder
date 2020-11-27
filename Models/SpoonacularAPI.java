@@ -18,17 +18,16 @@ import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import utils.SpoonacularBaseUrl;
+import static utils.SpoonacularBaseUrl.baseUrlForApiCall;
 
 public class SpoonacularAPI implements RecipeApiInterface {
 
     private static HttpURLConnection connection;
 
     //used for creating the urls used to make api calls
-    private static final String baseURL = SpoonacularBaseUrl.baseUrl();
     private static final String complexSearch = "complexSearch?"; //used for targetedRecipe method
     private static final String random = "random?number=1"; //used for randomRecipe method
-    private static final String number = "&number=6"; //max number of results allowed to be displayed
+    private static final String number = "&number=100"; //max number of results allowed to be displayed
 
     //our groups api keys
     private static final String kalobKey = ApiKeys.kalob_ApiKey();
@@ -60,32 +59,52 @@ public class SpoonacularAPI implements RecipeApiInterface {
      */
     @Override
     public String[] targetedRecipe(String _cuisine, String _includedIngredients, String _excludedIngredients, String _intolerances) {
-        String recipe = (baseURL + complexSearch + "cuisine=" + _cuisine
+        String recipe = (baseUrlForApiCall + complexSearch + "cuisine=" + _cuisine
                 + "&includeIngredients=" + _includedIngredients
                 + "&excludeIngredients=" + _excludedIngredients
                 + "&intolerances=" + _intolerances
                 + number + hengKey);
 
+        System.out.println(recipe);
         //array that is returned with recipes information
         String[] recipesInfo = new String[0];
         try {
             
-            loadApi(recipe);
+            int status = loadApi(recipe);
+            if(status == 402){
+                recipe = (baseUrlForApiCall + complexSearch + "cuisine=" + _cuisine
+                + "&includeIngredients=" + _includedIngredients
+                + "&excludeIngredients=" + _excludedIngredients
+                + "&intolerances=" + _intolerances
+                + number + brodyKey);
+            }
+            status = loadApi(recipe);
+            if(status == 402){
+                recipe = (baseUrlForApiCall + complexSearch + "cuisine=" + _cuisine
+                + "&includeIngredients=" + _includedIngredients
+                + "&excludeIngredients=" + _excludedIngredients
+                + "&intolerances=" + _intolerances
+                + number + kalobKey);
+            }
+            status = loadApi(recipe);
+            if(status == 402){
+                System.out.println("We have ran out of API calls for the day. Try again tommorrow. Sorry!");
+            }
 
             JSONObject obj = new JSONObject(responseContent.toString());
             JSONArray array = obj.getJSONArray("results");
             JSONObject temp;
             
-            int total = obj.getInt("totalResults");
+            int total = Math.min(obj.getInt("totalResults"), obj.getInt("number"));
             recipesInfo = new String[(total * 2)];
 
             int arrCounter = 0;
             for (int i = 0; i < total; i++) {
                 temp = array.getJSONObject(i);
-                
+
                 recipesInfo[arrCounter] = (String) temp.get("title");
                 recipesInfo[arrCounter += 1] = temp.get("id").toString();
-                
+
                 arrCounter += 1;
             }
         }
@@ -107,7 +126,7 @@ public class SpoonacularAPI implements RecipeApiInterface {
      */
     @Override
     public String[] randomRecipe() {
-        String randomRecipe = (baseURL + random + kalobKey);
+        String randomRecipe = (baseUrlForApiCall + random + kalobKey);
 
         String[] randomRecipeInfo = new String[RANDOM_RECIPE_ARRAY_SIZE];
 
@@ -133,15 +152,16 @@ public class SpoonacularAPI implements RecipeApiInterface {
         //returns [title, spoonacularSourceURL, id]
         return randomRecipeInfo;
     }
-    
+
     /**
      * Method used to start api call
-     * 
-     * @param recipe 
+     *
+     * @param recipe
      */
-    private void loadApi(String recipe) {
+    private int loadApi(String recipe) {
         
         responseContent = new StringBuilder();
+        int status = 0;
         
         try {
             URL url = new URL(recipe);
@@ -152,7 +172,7 @@ public class SpoonacularAPI implements RecipeApiInterface {
             connection.setReadTimeout(10000);
             connection.addRequestProperty("User-Agent", "Mozilla/5.0"); //needed to make api call
 
-            int status = connection.getResponseCode();
+            status = connection.getResponseCode();
             System.out.println("Response Code: " + status);
 
             reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -170,5 +190,7 @@ public class SpoonacularAPI implements RecipeApiInterface {
         catch (IOException ex) {
             Logger.getLogger(SpoonacularAPI.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        return status;
     }
 }
