@@ -27,7 +27,7 @@ public class SpoonacularAPI implements RecipeApiInterface {
     //used for creating the urls used to make api calls
     private static final String complexSearch = "complexSearch?"; //used for targetedRecipe method
     private static final String random = "random?number=1"; //used for randomRecipe method
-    private static final String number = "&number=100"; //max number of results allowed to be displayed
+    private static final String number = "&number=5"; //max number of results allowed to be displayed
 
     //our groups api keys
     private static final String kalobKey = ApiKeys.kalob_ApiKey();
@@ -69,7 +69,7 @@ public class SpoonacularAPI implements RecipeApiInterface {
         //array that is returned with recipes information
         String[] recipesInfo = new String[0];
         try {
-            
+
             int status = loadApi(recipe);
             if(status == 402){
                 recipe = (baseUrlForApiCall + complexSearch + "cuisine=" + _cuisine
@@ -94,7 +94,7 @@ public class SpoonacularAPI implements RecipeApiInterface {
             JSONObject obj = new JSONObject(responseContent.toString());
             JSONArray array = obj.getJSONArray("results");
             JSONObject temp;
-            
+
             int total = Math.min(obj.getInt("totalResults"), obj.getInt("number"));
             recipesInfo = new String[(total * 2)];
 
@@ -159,10 +159,10 @@ public class SpoonacularAPI implements RecipeApiInterface {
      * @param recipe
      */
     private int loadApi(String recipe) {
-        
+
         responseContent = new StringBuilder();
         int status = 0;
-        
+
         try {
             URL url = new URL(recipe);
             connection = (HttpURLConnection) url.openConnection();
@@ -190,7 +190,7 @@ public class SpoonacularAPI implements RecipeApiInterface {
         catch (IOException ex) {
             Logger.getLogger(SpoonacularAPI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return status;
     }
 }

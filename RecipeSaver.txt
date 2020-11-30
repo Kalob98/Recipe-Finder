@@ -1,0 +1,5 @@
+Cauliflower, Brown Rice, and Vegetable Fried Rice::https://spoonacular.com/recipes/Cauliflower,-Brown-Rice,-and-Vegetable-Fried-Rice-716426::716426::true
+Chicken Tortilla Soup (Slow Cooker)::https://spoonacular.com/recipes/Chicken-Tortilla-Soup-(Slow-Cooker)-715392::715392::true
+Berry Banana Breakfast Smoothie::https://spoonacular.com/recipes/Berry-Banana-Breakfast-Smoothie-715497::715497::true
+Garlicky Kale::https://spoonacular.com/recipes/Garlicky-Kale-644387::644387::true
+Homemade Garlic and Basil French Fries::https://spoonacular.com/recipes/Homemade-Garlic-and-Basil-French-Fries-715594::715594::true

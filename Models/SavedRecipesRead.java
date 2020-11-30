@@ -1,7 +1,8 @@
 package Models;
 
 /**
- * This class is to read, delete and copies the text file, where only one text file will show
+ * This class is to read, delete and copies the text file, where only one text
+ * file will show
  *
  * @author Heng Tan
  *
@@ -30,13 +31,13 @@ public class SavedRecipesRead {
 
     public static Recipe[] getSavedRecipes() throws IOException {
         ArrayList<Recipe> recipe = new ArrayList<Recipe>();
-        Files.list(Paths.get(".")).forEach(System.out::println);
+        //Files.list(Paths.get(".")).forEach(System.out::println);
         // Name of the file to open
         String separator = System.getProperty("file.separator");
         String file = "src" + separator + "RecipeSaver.txt";
         // Referencing one line at a time
         String line;
-        // FileReader reads text files 
+        // FileReader reads text files
         FileReader fileReader = null;
         try {
             fileReader = new FileReader(file);
@@ -53,9 +54,10 @@ public class SavedRecipesRead {
             }
             while ((line = br.readLine()) != null) {
                 //Create new recipe from parameter separated by commas
-                List<String> list = Arrays.asList(line.split(","));
+                List<String> list = Arrays.asList(line.split("::"));
                 //Insert into arraylist
-                recipe.add(new Recipe(list.get(0), list.get(1), list.get(2), Boolean.parseBoolean(list.get(3))));
+                //recipe.add(new Recipe(list.get(0), list.get(1), list.get(2), Boolean.parseBoolean(list.get(3))));
+                recipe.add(new Recipe(list.get(0), list.get(1), list.get(2), true));
 
             }
         } catch (IOException ex) {
@@ -74,7 +76,7 @@ public class SavedRecipesRead {
     }
 
     public static void delete(String _file, String _remove, String _delimiter) throws IOException {
-        Files.list(Paths.get(".")).forEach(System.out::println);
+        //Files.list(Paths.get(".")).forEach(System.out::println);
         String separator = System.getProperty("file.separator");
         String _tempFile = "src" + separator + "RecipeSaver.txt";
         File _newFile = new File(_tempFile);
@@ -91,7 +93,7 @@ public class SavedRecipesRead {
             BufferedReader _bufferedReader = new BufferedReader(_fileReader);
 
             while ((_line = _bufferedReader.readLine()) != null) {
-                _data = _line.split(",");
+                _data = _line.split("::");
                 if (_data[2].equalsIgnoreCase(_remove)) {
 
                 } else {
@@ -127,4 +129,10 @@ public class SavedRecipesRead {
         }
     }
 
+    public static String getFilePathToTextFile() {
+        String separator = System.getProperty("file.separator");
+        String _tempFile = "src" + separator + "RecipeSaver.txt";
+
+        return _tempFile;
+    }
 }
