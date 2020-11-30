@@ -7,7 +7,6 @@ package Models;
  *
  * Last updated 11/12/20
  */
-import utils.SpoonacularBaseUrl;
 import static utils.SpoonacularBaseUrl.baseUrlForUrlCreation;
 
 public class Recipe {
