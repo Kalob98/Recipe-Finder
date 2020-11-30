@@ -9,7 +9,6 @@ package Controllers;
  */
 import Models.Recipe;
 import Models.RecipeArray;
-import Models.SpoonacularAdapter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

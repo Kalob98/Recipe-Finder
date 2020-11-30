@@ -50,11 +50,10 @@ public class RecipeSceneController implements Initializable {
     public void initialize(URL _url, ResourceBundle _rb) {
         this.recipe = Recipe.getInstance();
         webEngine = webView.getEngine();
-        if(this.recipe.getIsSaved()){
+        if(this.recipe.getIsSaved() == true){
             createDeleteButton();
         }
         webEngine.load(this.recipe.getUrl());
-        //System.out.println(recipe.getUrl());
     }
 
     private void createDeleteButton(){

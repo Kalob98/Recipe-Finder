@@ -29,12 +29,14 @@ public class Recipe {
         this.title = _title;
         this.url = _url;
         this.id = _id;
+        this.isSaved = false;
     }
 
     public Recipe(String _title, String _id) {
         this.id = _id;
         this.title = _title;
         this.url = createURL();
+        this.isSaved = false;
     }
 
     public Recipe() {
