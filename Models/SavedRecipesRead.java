@@ -1,13 +1,12 @@
 package Models;
 
 /**
- * This class is to read the text file
+ * This class is to read, delete and copies the text file, where only one text file will show
  *
  * @author Heng Tan
  *
  * Last Updated 11/29/2020
  */
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
