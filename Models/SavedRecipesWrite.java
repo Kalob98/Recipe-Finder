@@ -32,7 +32,7 @@ public class SavedRecipesWrite {
             FileWriter fileWriter = new FileWriter(file, true);
             try ( BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
                 PrintWriter pw = new PrintWriter(fileWriter);
-                String string = _recipe.getTitle() + "," + _recipe.getUrl() + "," + _recipe.getID() + "," + Boolean.toString(_recipe.getIsSaved()) + "\n";
+                String string = _recipe.getTitle() + "::" + _recipe.getUrl() + "::" + _recipe.getID() + "::" + "true" + "\n";
                 pw.append(string);
                 System.out.println("New recipes added!");
 

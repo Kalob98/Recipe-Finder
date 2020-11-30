@@ -23,6 +23,7 @@ public class Recipe {
         this.url = _url;
         this.id = _id;
         this.isSaved = _isSaved;
+        System.out.println("TRUE!");
     }
 
     public Recipe(String _title, String _url, String _id) {
@@ -84,5 +85,8 @@ public class Recipe {
 
     public void setIsSaved(boolean _isSaved){
         this.isSaved = _isSaved;
+    }
+    public void setId(String id){
+        this.id = id;
     }
 }
