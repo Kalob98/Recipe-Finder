@@ -53,6 +53,8 @@ public class RecipeChoiceController implements Initializable {
             Hyperlink hLink = new Hyperlink();
             hLink.setText(this.recipes[i].getTitle());
             hLink.setAccessibleText(this.recipes[i].getUrl());
+            hLink.setId(this.recipes[i].getID());
+            hLink.setEllipsisString(Boolean.toString(this.recipes[i].getIsSaved()));
             Recipe temp = Recipe.getInstance();
             temp.setUrl(recipes[i].getUrl());
             hLink.setOnAction(e -> {
@@ -76,6 +78,8 @@ public class RecipeChoiceController implements Initializable {
         Recipe temp = Recipe.getInstance();
         temp.setTitle(_hLink.getText());
         temp.setUrl(_hLink.getAccessibleText());
+        temp.setIsSaved(Boolean.parseBoolean(_hLink.getEllipsisString()));
+        temp.setId(_hLink.getId());
 
         System.out.println(_hLink.getAccessibleText());
         System.out.println(_hLink.getText());

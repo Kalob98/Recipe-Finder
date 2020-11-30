@@ -8,9 +8,13 @@ package Controllers;
  * Last updated 11/15/20
  */
 import Models.Recipe;
+import Models.SavedRecipesRead;
+import static Models.SavedRecipesWrite.write;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +40,7 @@ public class RecipeSceneController implements Initializable {
     private Button backButton;
     @FXML
     private Button closeButton;
+    @FXML
     private VBox deleteBoxVBox;
     private String recipeURL;
     private Recipe recipe;
@@ -54,15 +59,32 @@ public class RecipeSceneController implements Initializable {
             createDeleteButton();
         }
         webEngine.load(this.recipe.getUrl());
+        System.out.println(this.recipe.getIsSaved());
     }
 
     private void createDeleteButton(){
         Button deleteButton = new Button("Un-Save");
-        deleteButton.setMaxWidth(deleteBoxVBox.getMaxWidth());
-        deleteButton.setMaxHeight(deleteBoxVBox.getMaxHeight());
+        deleteButton.setPrefWidth(deleteBoxVBox.getPrefWidth());
+        deleteButton.setPrefHeight(deleteBoxVBox.getPrefHeight());
+        deleteButton.setOnAction(e->{
+            try {
+                deleteRecipe();
+            } catch (IOException ex) {
+                Logger.getLogger(RecipeSceneController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         deleteBoxVBox.getChildren().add(deleteButton);
     }
 
+    private void deleteRecipe() throws IOException{
+        SavedRecipesRead.delete(SavedRecipesRead.getFilePathToTextFile(), this.recipe.getID(),"::");
+        System.out.println("ID: " + this.recipe.getID());
+    }
+
+    @FXML
+    private void saveRecipe(ActionEvent _event) throws IOException{
+        write(this.recipe);
+    }
 
     /**
      *
