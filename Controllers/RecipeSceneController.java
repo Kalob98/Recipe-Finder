@@ -5,7 +5,7 @@ package Controllers;
  *
  * @author Brodrick Grimm
  *
- * Last updated 11/05/20
+ * Last updated 11/15/20
  */
 import Models.Recipe;
 import java.io.IOException;
@@ -19,6 +19,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -34,7 +35,10 @@ public class RecipeSceneController implements Initializable {
     @FXML
     private Button backButton;
     @FXML
+    private Button closeButton;
+    private VBox deleteBoxVBox;
     private String recipeURL;
+    private Recipe recipe;
 
     /**
      * Initializes the controller class.
@@ -44,30 +48,30 @@ public class RecipeSceneController implements Initializable {
      */
     @Override
     public void initialize(URL _url, ResourceBundle _rb) {
-        Recipe temp = Recipe.getInstance();
+        this.recipe = Recipe.getInstance();
         webEngine = webView.getEngine();
-        webEngine.load(temp.getUrl());
+        if(this.recipe.getIsSaved() == true){
+            createDeleteButton();
+        }
+        webEngine.load(this.recipe.getUrl());
     }
 
-    @FXML
-    private void home(ActionEvent _event) throws IOException {
-        Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/HomeScene.fxml"));
-        Scene infoScene = new Scene(infoParent);
-
-        Stage window = (Stage) ((Node) _event.getSource()).getScene().getWindow();
-
-        window.setScene(infoScene);
-        window.show();
+    private void createDeleteButton(){
+        Button deleteButton = new Button("Un-Save");
+        deleteButton.setMaxWidth(125);
+        deleteButton.setMaxWidth(35);
+        deleteBoxVBox.getChildren().add(deleteButton);
     }
 
+
+    /**
+     *
+     * @param _event
+     * @throws IOException
+     */
     @FXML
-    private void back(ActionEvent _event) throws IOException {
-        Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/RecipeChoice.fxml"));
-        Scene infoScene = new Scene(infoParent);
-
-        Stage window = (Stage) ((Node) _event.getSource()).getScene().getWindow();
-
-        window.setScene(infoScene);
-        window.show();
+    private void close(ActionEvent _event) throws IOException {
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
     }
 }

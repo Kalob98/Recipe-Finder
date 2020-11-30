@@ -1,30 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RecipeChoiceController">
    <children>
-      <Label fx:id="recipeOneLabel" layoutX="60.0" layoutY="130.0" prefHeight="17.0" prefWidth="361.0" text="Label" />
-      <Label fx:id="recipeTwoLabel" layoutX="60.0" layoutY="170.0" prefHeight="17.0" prefWidth="361.0" text="Label" />
-      <Label fx:id="recipeThreeLabel" layoutX="60.0" layoutY="210.0" prefHeight="17.0" prefWidth="361.0" text="Label" />
-      <Label fx:id="recipeFourLabel" layoutX="60.0" layoutY="250.0" prefHeight="17.0" prefWidth="361.0" text="Label" />
-      <Label fx:id="recipeFiveLabel" layoutX="60.0" layoutY="290.0" prefHeight="17.0" prefWidth="361.0" text="Label" />
-      <Label fx:id="recipeSixLabel" layoutX="60.0" layoutY="330.0" prefHeight="17.0" prefWidth="361.0" text="Label" />
-      <Button fx:id="recipeOneButton" layoutX="614.0" layoutY="126.0" mnemonicParsing="false" onAction="#RecipeOneChosen" text="Button" />
-      <Button fx:id="recipeTwoButton" layoutX="614.0" layoutY="166.0" mnemonicParsing="false" text="Button" />
-      <Button fx:id="recipeThreeButton" layoutX="614.0" layoutY="206.0" mnemonicParsing="false" text="Button" />
-      <Button fx:id="recipeFourButton" layoutX="614.0" layoutY="246.0" mnemonicParsing="false" text="Button" />
-      <Button fx:id="recipeFiveButton" layoutX="614.0" layoutY="286.0" mnemonicParsing="false" text="Button" />
-      <Button fx:id="recipeSixButton" layoutX="614.0" layoutY="326.0" mnemonicParsing="false" text="Button" />
       <Text layoutX="282.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose your recipe" textAlignment="CENTER" wrappingWidth="138.251953125">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
       <Button fx:id="backButton" layoutX="325.0" layoutY="432.0" mnemonicParsing="false" onAction="#back" text="Back" />
+      <ScrollPane layoutX="48.0" layoutY="122.0" prefHeight="268.0" prefWidth="682.0">
+         <content>
+            <VBox fx:id="recipesVbox" prefHeight="268.0" prefWidth="667.0" />
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

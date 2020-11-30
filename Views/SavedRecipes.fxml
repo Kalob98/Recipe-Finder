@@ -21,9 +21,9 @@
       <Button fx:id="recipeFiveButton" layoutX="614.0" layoutY="286.0" mnemonicParsing="false" onAction="#deleteFive" text="Delete" />
       <Button fx:id="recipeSixButton" layoutX="614.0" layoutY="326.0" mnemonicParsing="false" onAction="#deleteSix" text="Delete" />
       <Text layoutX="282.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose your recipe" textAlignment="CENTER" wrappingWidth="138.251953125">
-         <font>
+        <font>
             <Font size="18.0" />
-         </font>
+        </font>
       </Text>
-   </children>
+    </children>
 </AnchorPane>
