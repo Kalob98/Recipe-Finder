@@ -40,7 +40,7 @@ public class RecipeChoiceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.recipes = RecipeArray.getInstance().getRecipes();
-        prepVbox(this.recipes);
+        prepVbox();
     }
 
     /**
@@ -48,16 +48,16 @@ public class RecipeChoiceController implements Initializable {
      *
      * @param recipes
      */
-    private void prepVbox(Recipe[] recipes) {
+    private void prepVbox() {
         for (int i = 0; i < this.recipes.length; i++) {
             Hyperlink hLink = new Hyperlink();
             hLink.setText(this.recipes[i].getTitle());
-            hLink.setAccessibleText(recipes[i].getUrl());
+            hLink.setAccessibleText(this.recipes[i].getUrl());
             Recipe temp = Recipe.getInstance();
             temp.setUrl(recipes[i].getUrl());
             hLink.setOnAction(e -> {
                 try {
-                    hyperLinkClicked(hLink);
+                    this.hyperLinkClicked(hLink);
                 } catch (IOException ex) {
                     Logger.getLogger(RecipeChoiceController.class.getName()).log(Level.SEVERE, null, ex);
                 }

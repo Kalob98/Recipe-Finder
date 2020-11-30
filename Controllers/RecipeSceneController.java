@@ -58,8 +58,8 @@ public class RecipeSceneController implements Initializable {
 
     private void createDeleteButton(){
         Button deleteButton = new Button("Un-Save");
-        deleteButton.setMaxWidth(125);
-        deleteButton.setMaxWidth(35);
+        deleteButton.setMaxWidth(deleteBoxVBox.getMaxWidth());
+        deleteButton.setMaxHeight(deleteBoxVBox.getMaxHeight());
         deleteBoxVBox.getChildren().add(deleteButton);
     }
 

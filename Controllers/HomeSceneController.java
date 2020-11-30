@@ -6,8 +6,9 @@ package Controllers;
  *
  * @author Brodrick Grimm
  * @author Kalob Reinholz
+ * @author Heng Tan
  *
- * Last updated 11/14/20
+ * Last updated 11/29/20
  */
 import java.io.IOException;
 import java.net.URL;
@@ -46,6 +47,13 @@ public class HomeSceneController implements Initializable {
 
     @FXML
     private void prevRecipe(ActionEvent _event) throws IOException {
+        Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/SavedRecipes.fxml"));
+        Scene infoScene = new Scene(infoParent);
+
+        Stage window = (Stage) ((Node) _event.getSource()).getScene().getWindow();
+
+        window.setScene(infoScene);
+        window.show();
     }
 
     @FXML
