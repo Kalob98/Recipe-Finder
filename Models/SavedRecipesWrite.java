@@ -1,125 +1,50 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Models;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 /**
  * This class is to write the text files and save it into the text file
- * 
+ *
  * @author Heng Tan
- * 
- * Last Updated 11/19/2020
+ *
+ * Last Updated 11/29/2020
  */
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 public class SavedRecipesWrite {
 
     /**
      * This is the write for the saved recipes in a text file
-     * @param args
-     * @throws IOException 
+     *
+     * @param _recipe
+     * @return
+     * @throws IOException
      */
-    public static void main(String args[]) throws IOException {
-        String data = "Hi how are you?";
-        int numberOfLines = 10000;
-        fileWriterWrite(data);
-        
-        bufferedWriter(data, numberOfLines);
-        
-        filesWrite(data);
-        
-        outputStreamWrite(data);
-        System.out.println("DONE");
-    }
-    
-    /**
-     * This is to stream raw data from the text file
-     * @param data
-     * @throws IOException 
-     */
-    private static void outputStreamWrite(String data) throws IOException {
-        OutputStream os = null;
-        try {
-            os = new FileOutputStream(new File("/Desktop"));
-        }
-        catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            os.close();
-        }
-    }
-    
-    /**
-     * Internally write the files from the output stream
-     * @param data 
-     */
-    private static void filesWrite(String data) {
-        try {
-            Files.write((Paths.get("/Desktop")), data.getBytes());
-        }
-        catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
-    
-    /**
-     * This is to write with a bunch of operations and lines
-     * @param data
-     * @param numberOfLines 
-     */
-    private static void bufferedWriter(String data, int numberOfLines) {
-        File file = new File("/Desktop");
-        FileWriter fileWriter = null;
-        BufferedWriter bufferedWriter = null;
-        String dataWithNewLine = data + System.getProperty("");
-        try {
-        fileWriter = new FileWriter(file);
-        bufferedWriter = new BufferedWriter(fileWriter);
-        for (int i = numberOfLines; i > 0; i--) {
-            bufferedWriter.write(dataWithNewLine);
+    public static boolean write(Recipe _recipe) throws IOException {
+        if (_recipe.getIsSaved() == false) {
+
+            Files.list(Paths.get(".")).forEach(System.out::println);
+            String separator = System.getProperty("file.separator");
+            String file = "src" + separator + "RecipeSaver.txt";
+            FileWriter fileWriter = new FileWriter(file, true);
+            try ( BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+                PrintWriter pw = new PrintWriter(fileWriter);
+                String string = _recipe.getTitle() + "," + _recipe.getUrl() + "," + _recipe.getID() + "," + Boolean.toString(_recipe.getIsSaved()) + "\n";
+                pw.append(string);
+                System.out.println("New recipes added!");
+
+                return true;
+            } catch (IOException ex) {
+                System.out.println("Error!" + ex);
             }
-        } 
-        catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            try {
-                fileWriter.close();
-                bufferedWriter.close();
-            }
-            catch (IOException ex) {
-                ex.printStackTrace();
-            }
+
+            System.out.println("The file does not exist.");
+            return false;
         }
-    }
-    
-    /**
-     * Writing when number of write operations is not a lot
-     * @param data 
-     */
-    private static void fileWriterWrite(String data) {
-        File file = new File("/Desktop");
-        FileWriter fileWriter = null;
-        try {
-            fileWriter = new FileWriter(file);
-            fileWriter.write(data);
-        }
-        catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            try {
-                fileWriter.close();               
-            }
-            catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
+        System.out.println("Recipe is already exists in the saved recipes");
+        return false;
     }
 }
