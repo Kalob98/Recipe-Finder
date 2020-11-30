@@ -22,7 +22,6 @@ public class Recipe {
         this.url = _url;
         this.id = _id;
         this.isSaved = _isSaved;
-        System.out.println("TRUE!");
     }
 
     public Recipe(String _title, String _url, String _id) {

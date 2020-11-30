@@ -19,8 +19,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.channels.FileChannel;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,7 +39,8 @@ public class SavedRecipesRead {
         FileReader fileReader = null;
         try {
             fileReader = new FileReader(file);
-        } catch (FileNotFoundException ex) {
+        }
+        catch (FileNotFoundException ex) {
             Logger.getLogger(SavedRecipesRead.class.getName()).log(Level.SEVERE, null, ex);
         }
         // Always wrap FileReader in BufferedReader
@@ -49,24 +48,28 @@ public class SavedRecipesRead {
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
-            if (!br.ready()) {
-                throw new IOException();
-            }
-            while ((line = br.readLine()) != null) {
-                //Create new recipe from parameter separated by commas
-                List<String> list = Arrays.asList(line.split("::"));
-                //Insert into arraylist
-                //recipe.add(new Recipe(list.get(0), list.get(1), list.get(2), Boolean.parseBoolean(list.get(3))));
-                recipe.add(new Recipe(list.get(0), list.get(1), list.get(2), true));
+//            if (!br.ready()) {
+//                throw new IOException();
+//            }
+            if ((line = br.readLine()) != null) {
+                while ((line = br.readLine()) != null) {
+                    //Create new recipe from parameter separated by commas
+                    List<String> list = Arrays.asList(line.split("::"));
+                    //Insert into arraylist
+                    //recipe.add(new Recipe(list.get(0), list.get(1), list.get(2), Boolean.parseBoolean(list.get(3))));
+                    recipe.add(new Recipe(list.get(0), list.get(1), list.get(2), true));
 
+                }
             }
-        } catch (IOException ex) {
+        }
+        catch (IOException ex) {
             Logger.getLogger(SavedRecipesRead.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
             // Always closing the file
             bufferedReader.close();
-        } catch (IOException ex) {
+        }
+        catch (IOException ex) {
             Logger.getLogger(SavedRecipesRead.class.getName()).log(Level.SEVERE, null, ex);
         }
         Recipe[] recipes = new Recipe[recipe.size()];
@@ -77,9 +80,10 @@ public class SavedRecipesRead {
 
     public static void delete(String _file, String _remove, String _delimiter) throws IOException {
         //Files.list(Paths.get(".")).forEach(System.out::println);
+
         String separator = System.getProperty("file.separator");
-        String _tempFile = "src" + separator + "RecipeSaver.txt";
-        File _newFile = new File(_tempFile);
+        String _tempFile = "src" + separator + "temp.txt";
+        File newFile = new File(_tempFile);
 
         String _line;
         String _data[];
@@ -96,7 +100,8 @@ public class SavedRecipesRead {
                 _data = _line.split("::");
                 if (_data[2].equalsIgnoreCase(_remove)) {
 
-                } else {
+                }
+                else {
                     _printWriter.println(_line);
                 }
             }
@@ -108,22 +113,24 @@ public class SavedRecipesRead {
             _bufferedWriter.close();
             _fileWriter.close();
 
-            File _newFile2 = new File(_tempFile);
-            File _replace = new File(_file);
-            _newFile2.renameTo(_replace);
-        } catch (IOException ex) {
+        }
+        catch (IOException ex) {
             System.out.println("Error, File is not found!");
         }
+
+        copyFileUsingChannel(newFile, new File(_file));
+        newFile.delete();
     }
 
-    private static void copyFileUsingChannel(File source, File dest) throws IOException {
+    private static void copyFileUsingChannel(File _source, File _dest) throws IOException {
         FileChannel sourceChannel = null;
         FileChannel destChannel = null;
         try {
-            sourceChannel = new FileInputStream(source).getChannel();
-            destChannel = new FileOutputStream(dest).getChannel();
+            sourceChannel = new FileInputStream(_source).getChannel();
+            destChannel = new FileOutputStream(_dest).getChannel();
             destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
-        } finally {
+        }
+        finally {
             sourceChannel.close();
             destChannel.close();
         }

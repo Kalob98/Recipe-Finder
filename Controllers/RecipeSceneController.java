@@ -59,7 +59,7 @@ public class RecipeSceneController implements Initializable {
             createDeleteButton();
         }
         webEngine.load(this.recipe.getUrl());
-        System.out.println(this.recipe.getIsSaved());
+        //System.out.println(this.recipe.getIsSaved());
     }
 
     private void createDeleteButton(){
@@ -78,7 +78,7 @@ public class RecipeSceneController implements Initializable {
 
     private void deleteRecipe() throws IOException{
         SavedRecipesRead.delete(SavedRecipesRead.getFilePathToTextFile(), this.recipe.getID(),"::");
-        System.out.println("ID: " + this.recipe.getID());
+        //System.out.println("ID: " + this.recipe.getID());
     }
 
     @FXML
