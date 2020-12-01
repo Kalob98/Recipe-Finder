@@ -118,21 +118,21 @@ public class SavedRecipesRead {
             System.out.println("Error, File is not found!");
         }
 
-        copyFileUsingChannel(newFile, new File(_file));
+        copyingFile(newFile, new File(_file));
         newFile.delete();
     }
 
-    private static void copyFileUsingChannel(File _source, File _dest) throws IOException {
-        FileChannel sourceChannel = null;
-        FileChannel destChannel = null;
+    private static void copyingFile(File _source, File _location) throws IOException {
+        FileChannel source = null;
+        FileChannel location = null;
         try {
-            sourceChannel = new FileInputStream(_source).getChannel();
-            destChannel = new FileOutputStream(_dest).getChannel();
-            destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
+            source = new FileInputStream(_source).getChannel();
+            location = new FileOutputStream(_location).getChannel();
+            location.transferFrom(source, 0, source.size());
         }
         finally {
-            sourceChannel.close();
-            destChannel.close();
+            source.close();
+            location.close();
         }
     }
 
