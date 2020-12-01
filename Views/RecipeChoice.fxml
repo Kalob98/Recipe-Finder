@@ -14,7 +14,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button fx:id="backButton" layoutX="325.0" layoutY="432.0" mnemonicParsing="false" onAction="#back" text="Back" />
+      <Button fx:id="backButton" layoutX="325.0" layoutY="432.0" mnemonicParsing="false" onAction="#homeButton" text="Home" />
       <ScrollPane layoutX="48.0" layoutY="122.0" prefHeight="268.0" prefWidth="682.0">
          <content>
             <VBox fx:id="recipesVbox" prefHeight="268.0" prefWidth="667.0" />
