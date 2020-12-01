@@ -117,19 +117,19 @@ public class Recipe {
     }
 
     //=================  SETTERS ===============
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitle(String _title) {
+        this.title = _title;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setUrl(String _url) {
+        this.url = _url;
     }
 
     public void setIsSaved(boolean _isSaved) {
         this.isSaved = _isSaved;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setId(String _id) {
+        this.id = _id;
     }
 }

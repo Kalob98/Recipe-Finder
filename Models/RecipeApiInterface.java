@@ -16,11 +16,11 @@ public interface RecipeApiInterface {
      * @param _cuisine
      * @param _inlcudedIngredients
      * @param _excludedIngredients
-     * @param _Intolerances
+     * @param _intolerances
      * @return
      */
     public String[] targetedRecipe(String _cuisine, String _inlcudedIngredients,
-            String _excludedIngredients, String _Intolerances);
+            String _excludedIngredients, String _intolerances);
 
     /**
      * Method that controllers call randomRecipes from API
