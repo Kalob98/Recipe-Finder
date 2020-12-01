@@ -1,7 +1,8 @@
 package Models;
 
 /**
- * This class is to read, delete and copies the text file, where only one text file will show
+ * This class is to read, delete and copies the text file, where only one text
+ * file will show
  *
  * @author Heng Tan
  *
@@ -18,8 +19,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.channels.FileChannel;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -30,17 +29,18 @@ public class SavedRecipesRead {
 
     public static Recipe[] getSavedRecipes() throws IOException {
         ArrayList<Recipe> recipe = new ArrayList<Recipe>();
-        Files.list(Paths.get(".")).forEach(System.out::println);
+        //Files.list(Paths.get(".")).forEach(System.out::println);
         // Name of the file to open
         String separator = System.getProperty("file.separator");
         String file = "src" + separator + "RecipeSaver.txt";
         // Referencing one line at a time
         String line;
-        // FileReader reads text files 
+        // FileReader reads text files
         FileReader fileReader = null;
         try {
             fileReader = new FileReader(file);
-        } catch (FileNotFoundException ex) {
+        }
+        catch (FileNotFoundException ex) {
             Logger.getLogger(SavedRecipesRead.class.getName()).log(Level.SEVERE, null, ex);
         }
         // Always wrap FileReader in BufferedReader
@@ -48,23 +48,28 @@ public class SavedRecipesRead {
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
-            if (!br.ready()) {
-                throw new IOException();
-            }
-            while ((line = br.readLine()) != null) {
-                //Create new recipe from parameter separated by commas
-                List<String> list = Arrays.asList(line.split(","));
-                //Insert into arraylist
-                recipe.add(new Recipe(list.get(0), list.get(1), list.get(2), Boolean.parseBoolean(list.get(3))));
+//            if (!br.ready()) {
+//                throw new IOException();
+//            }
+            if ((line = br.readLine()) != null) {
+                while ((line = br.readLine()) != null) {
+                    //Create new recipe from parameter separated by commas
+                    List<String> list = Arrays.asList(line.split("::"));
+                    //Insert into arraylist
+                    //recipe.add(new Recipe(list.get(0), list.get(1), list.get(2), Boolean.parseBoolean(list.get(3))));
+                    recipe.add(new Recipe(list.get(0), list.get(1), list.get(2), true));
 
+                }
             }
-        } catch (IOException ex) {
+        }
+        catch (IOException ex) {
             Logger.getLogger(SavedRecipesRead.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
             // Always closing the file
             bufferedReader.close();
-        } catch (IOException ex) {
+        }
+        catch (IOException ex) {
             Logger.getLogger(SavedRecipesRead.class.getName()).log(Level.SEVERE, null, ex);
         }
         Recipe[] recipes = new Recipe[recipe.size()];
@@ -74,10 +79,11 @@ public class SavedRecipesRead {
     }
 
     public static void delete(String _file, String _remove, String _delimiter) throws IOException {
-        Files.list(Paths.get(".")).forEach(System.out::println);
+        //Files.list(Paths.get(".")).forEach(System.out::println);
+
         String separator = System.getProperty("file.separator");
-        String _tempFile = "src" + separator + "RecipeSaver.txt";
-        File _newFile = new File(_tempFile);
+        String _tempFile = "src" + separator + "temp.txt";
+        File newFile = new File(_tempFile);
 
         String _line;
         String _data[];
@@ -91,10 +97,11 @@ public class SavedRecipesRead {
             BufferedReader _bufferedReader = new BufferedReader(_fileReader);
 
             while ((_line = _bufferedReader.readLine()) != null) {
-                _data = _line.split(",");
+                _data = _line.split("::");
                 if (_data[2].equalsIgnoreCase(_remove)) {
 
-                } else {
+                }
+                else {
                     _printWriter.println(_line);
                 }
             }
@@ -106,25 +113,33 @@ public class SavedRecipesRead {
             _bufferedWriter.close();
             _fileWriter.close();
 
-            File _newFile2 = new File(_tempFile);
-            File _replace = new File(_file);
-            _newFile2.renameTo(_replace);
-        } catch (IOException ex) {
+        }
+        catch (IOException ex) {
             System.out.println("Error, File is not found!");
         }
+
+        copyingFile(newFile, new File(_file));
+        newFile.delete();
     }
 
-    private static void copyFileUsingChannel(File source, File dest) throws IOException {
-        FileChannel sourceChannel = null;
-        FileChannel destChannel = null;
+    private static void copyingFile(File _source, File _location) throws IOException {
+        FileChannel source = null;
+        FileChannel location = null;
         try {
-            sourceChannel = new FileInputStream(source).getChannel();
-            destChannel = new FileOutputStream(dest).getChannel();
-            destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
-        } finally {
-            sourceChannel.close();
-            destChannel.close();
+            source = new FileInputStream(_source).getChannel();
+            location = new FileOutputStream(_location).getChannel();
+            location.transferFrom(source, 0, source.size());
+        }
+        finally {
+            source.close();
+            location.close();
         }
     }
 
+    public static String getFilePathToTextFile() {
+        String separator = System.getProperty("file.separator");
+        String _tempFile = "src" + separator + "RecipeSaver.txt";
+
+        return _tempFile;
+    }
 }

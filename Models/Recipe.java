@@ -7,7 +7,6 @@ package Models;
  *
  * Last updated 11/12/20
  */
-import utils.SpoonacularBaseUrl;
 import static utils.SpoonacularBaseUrl.baseUrlForUrlCreation;
 
 public class Recipe {
@@ -84,5 +83,8 @@ public class Recipe {
 
     public void setIsSaved(boolean _isSaved){
         this.isSaved = _isSaved;
+    }
+    public void setId(String id){
+        this.id = id;
     }
 }

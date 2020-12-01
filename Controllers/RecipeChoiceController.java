@@ -40,7 +40,7 @@ public class RecipeChoiceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.recipes = RecipeArray.getInstance().getRecipes();
-        prepVbox(this.recipes);
+        prepVbox();
     }
 
     /**
@@ -48,16 +48,18 @@ public class RecipeChoiceController implements Initializable {
      *
      * @param recipes
      */
-    private void prepVbox(Recipe[] recipes) {
+    private void prepVbox() {
         for (int i = 0; i < this.recipes.length; i++) {
             Hyperlink hLink = new Hyperlink();
             hLink.setText(this.recipes[i].getTitle());
-            hLink.setAccessibleText(recipes[i].getUrl());
+            hLink.setAccessibleText(this.recipes[i].getUrl());
+            hLink.setId(this.recipes[i].getID());
+            hLink.setEllipsisString(Boolean.toString(this.recipes[i].getIsSaved()));
             Recipe temp = Recipe.getInstance();
             temp.setUrl(recipes[i].getUrl());
             hLink.setOnAction(e -> {
                 try {
-                    hyperLinkClicked(hLink);
+                    this.hyperLinkClicked(hLink);
                 } catch (IOException ex) {
                     Logger.getLogger(RecipeChoiceController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -76,9 +78,11 @@ public class RecipeChoiceController implements Initializable {
         Recipe temp = Recipe.getInstance();
         temp.setTitle(_hLink.getText());
         temp.setUrl(_hLink.getAccessibleText());
+        temp.setIsSaved(Boolean.parseBoolean(_hLink.getEllipsisString()));
+        temp.setId(_hLink.getId());
 
-        System.out.println(_hLink.getAccessibleText());
-        System.out.println(_hLink.getText());
+        //System.out.println(_hLink.getAccessibleText());
+        //System.out.println(_hLink.getText());
 
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/Views/RecipeScene.fxml"));

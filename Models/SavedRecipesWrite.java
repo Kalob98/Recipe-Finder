@@ -11,8 +11,6 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class SavedRecipesWrite {
 
@@ -26,13 +24,13 @@ public class SavedRecipesWrite {
     public static boolean write(Recipe _recipe) throws IOException {
         if (_recipe.getIsSaved() == false) {
 
-            Files.list(Paths.get(".")).forEach(System.out::println);
+            //Files.list(Paths.get(".")).forEach(System.out::println);
             String separator = System.getProperty("file.separator");
             String file = "src" + separator + "RecipeSaver.txt";
             FileWriter fileWriter = new FileWriter(file, true);
             try ( BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
                 PrintWriter pw = new PrintWriter(fileWriter);
-                String string = _recipe.getTitle() + "," + _recipe.getUrl() + "," + _recipe.getID() + "," + Boolean.toString(_recipe.getIsSaved()) + "\n";
+                String string = _recipe.getTitle() + "::" + _recipe.getUrl() + "::" + _recipe.getID() + "::" + "true" + "\n";
                 pw.append(string);
                 System.out.println("New recipes added!");
 
