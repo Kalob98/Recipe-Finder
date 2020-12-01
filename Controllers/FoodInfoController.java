@@ -189,9 +189,6 @@ public class FoodInfoController implements Initializable {
                 excludeString = excludeString.substring(0, excludeString.length() - 1);
             }
         }
-        /*if(excludeString.length() <= 1){
-            excludeString = null;
-        }*/
         return excludeString;
     }
 
