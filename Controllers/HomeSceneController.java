@@ -8,7 +8,7 @@ package Controllers;
  * @author Kalob Reinholz
  * @author Heng Tan
  *
- * Last updated 11/29/20
+ * Last updated 11/30/20
  */
 import Models.RecipeArray;
 import Models.SavedRecipesRead;
@@ -44,11 +44,18 @@ public class HomeSceneController implements Initializable {
      */
     @Override
     public void initialize(URL _url, ResourceBundle _rb) {
-        // TODO
     }
 
+    /**
+     * Goes to the RecipeChoice scene to display all saved recipes.
+     *
+     * @param _event
+     * @throws IOException
+     */
     @FXML
     private void prevRecipe(ActionEvent _event) throws IOException {
+
+        //copys the instance variables from all targeted recipes
         RecipeArray temp = RecipeArray.getInstance();
         temp.setRecipes(SavedRecipesRead.getSavedRecipes());
 
@@ -61,6 +68,12 @@ public class HomeSceneController implements Initializable {
         window.show();
     }
 
+    /**
+     * Goes to the HowToUse view
+     *
+     * @param _event
+     * @throws IOException
+     */
     @FXML
     private void howToUse(ActionEvent _event) throws IOException {
         Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/HowToUse.fxml"));
@@ -72,6 +85,12 @@ public class HomeSceneController implements Initializable {
         window.show();
     }
 
+    /**
+     * Goes to the FoodInfo view
+     *
+     * @param _event
+     * @throws IOException
+     */
     @FXML
     private void next(ActionEvent _event) throws IOException {
         Parent infoParnet = FXMLLoader.load(getClass().getResource("/Views/FoodInfo.fxml"));
@@ -83,6 +102,11 @@ public class HomeSceneController implements Initializable {
         window.show();
     }
 
+    /**
+     * Closes the program.
+     *
+     * @param _event
+     */
     @FXML
     private void quit(ActionEvent _event) {
         Stage stage = (Stage) quitButton.getScene().getWindow();

@@ -5,7 +5,7 @@ package Controllers;
  *
  * @author Brodrick Grimm
  *
- * Last updated 10/20/20
+ * Last updated 11/30/20
  */
 import java.io.IOException;
 import java.net.URL;
@@ -36,6 +36,12 @@ public class HowToUseController implements Initializable {
         // TODO
     }
 
+    /**
+     * Goes to the HomeScene view.
+     *
+     * @param _event
+     * @throws IOException
+     */
     @FXML
     private void back(ActionEvent _event) throws IOException {
         Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/HomeScene.fxml"));

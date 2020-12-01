@@ -5,7 +5,7 @@ package Controllers;
  *
  * @author Brodrick Grimm
  *
- * Last updated 11/17/20
+ * Last updated 11/30/20
  */
 import Models.Recipe;
 import Models.RecipeArray;
@@ -37,8 +37,13 @@ public class RecipeChoiceController implements Initializable {
     private Recipe[] recipes;
     private int test;
 
+    /**
+     *
+     * @param _url
+     * @param _rb
+     */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL _url, ResourceBundle _rb) {
         this.recipes = RecipeArray.getInstance().getRecipes();
         prepVbox();
     }
@@ -49,18 +54,23 @@ public class RecipeChoiceController implements Initializable {
      * @param recipes
      */
     private void prepVbox() {
+
         for (int i = 0; i < this.recipes.length; i++) {
             Hyperlink hLink = new Hyperlink();
+
             hLink.setText(this.recipes[i].getTitle());
             hLink.setAccessibleText(this.recipes[i].getUrl());
             hLink.setId(this.recipes[i].getID());
             hLink.setEllipsisString(Boolean.toString(this.recipes[i].getIsSaved()));
+
             Recipe temp = Recipe.getInstance();
             temp.setUrl(recipes[i].getUrl());
+
             hLink.setOnAction(e -> {
                 try {
                     this.hyperLinkClicked(hLink);
-                } catch (IOException ex) {
+                }
+                catch (IOException ex) {
                     Logger.getLogger(RecipeChoiceController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             });
@@ -81,9 +91,6 @@ public class RecipeChoiceController implements Initializable {
         temp.setIsSaved(Boolean.parseBoolean(_hLink.getEllipsisString()));
         temp.setId(_hLink.getId());
 
-        //System.out.println(_hLink.getAccessibleText());
-        //System.out.println(_hLink.getText());
-
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/Views/RecipeScene.fxml"));
         Scene scene = new Scene(root);
@@ -94,6 +101,7 @@ public class RecipeChoiceController implements Initializable {
     }
 
     /**
+     * Goes to the HomeScene view.
      *
      * @param _event
      * @throws IOException
@@ -108,5 +116,4 @@ public class RecipeChoiceController implements Initializable {
         window.setScene(infoScene);
         window.show();
     }
-
 }

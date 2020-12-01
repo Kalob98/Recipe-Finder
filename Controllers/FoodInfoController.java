@@ -7,7 +7,7 @@ package Controllers;
  * @author Brodrick Grimm
  * @author Kalob Reinholz
  *
- * Last updated 11/17/20
+ * Last updated 11/30/20
  */
 import Models.SpoonacularAdapter;
 import Models.Recipe;
@@ -54,13 +54,13 @@ public class FoodInfoController implements Initializable {
     private CheckBox excluded[];
 
     /**
-     * Initializes the controller class.
+     * Adds the ingredients to the checkboxes.
      *
-     * @param url
-     * @param rb
+     * @param _url
+     * @param _rb
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL _url, ResourceBundle _rb) {
         clearStrings();
         included = new CheckBox[INGREDIENTS.values().length];
         excluded = new CheckBox[INGREDIENTS.values().length];
@@ -69,6 +69,7 @@ public class FoodInfoController implements Initializable {
     }
 
     /**
+     * Gets a random recipe
      *
      * @param _event
      * @throws IOException
@@ -76,12 +77,17 @@ public class FoodInfoController implements Initializable {
     @FXML
     private void randomRecipe(ActionEvent _event) throws IOException {
 
-        //change temp
-        Recipe temp = Recipe.getInstance();
-        Recipe temp2 = SpoonacularAdapter.getRandomRecipe();
-        temp.setUrl(temp2.getUrl());
-        temp.setTitle(temp2.getTitle());
+        //copying all instance variables from randomly generated recipe to singleton recipe
+        Recipe singletonRandomRecipe = Recipe.getInstance();
+        Recipe randomRecipe = SpoonacularAdapter.getRandomRecipe();
+        singletonRandomRecipe.setUrl(randomRecipe.getUrl());
+        singletonRandomRecipe.setTitle(randomRecipe.getTitle());
+        singletonRandomRecipe.setId(randomRecipe.getID());
+        singletonRandomRecipe.setIsSaved(false);
+
         clearStrings();
+
+        //when random button is clicked RecipeScene view is loaded
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/Views/RecipeScene.fxml"));
         Scene scene = new Scene(root);
@@ -92,15 +98,19 @@ public class FoodInfoController implements Initializable {
     }
 
     /**
+     * Gets targeted recipe.
      *
      * @param _event
      * @throws IOException
      */
     @FXML
     private void searchRecipe(ActionEvent _event) throws IOException {
+
+        //copys the instance variables from all targeted recipes
         RecipeArray temp = RecipeArray.getInstance();
         temp.setRecipes(SpoonacularAdapter.getRecipe(this.getCuisine(), this.getIncluded(), this.getExcluded(), ""));
 
+        //when search button is clicked RecipeChoice view is loaded
         Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/RecipeChoice.fxml"));
         Scene infoScene = new Scene(infoParent);
 
@@ -128,7 +138,7 @@ public class FoodInfoController implements Initializable {
     }
 
     /**
-     * fills the include and exclude boxes with the checkboxes
+     * Fils the include and exclude boxes with the checkboxes.
      */
     private void setUpVboxes() {
 
@@ -146,7 +156,7 @@ public class FoodInfoController implements Initializable {
     }
 
     /**
-     * Clears the instance strings
+     * Clears the instance strings.
      */
     private void clearStrings() {
         this.includeString = "";
@@ -155,13 +165,13 @@ public class FoodInfoController implements Initializable {
     }
 
     /**
-     *
+     * Fills in all the cuisines.
      */
     private void loadData() {
         cuisineChoiceBox.getItems().addAll(Cuisines.loadCuisines());
     }
-//=================  GETTERS ===============
 
+//=================  GETTERS ===============
     private String getIncluded() {
         for (CheckBox box : included) {
             if (box.isSelected()) {

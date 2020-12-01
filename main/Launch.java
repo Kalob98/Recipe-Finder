@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import utils.WindowSize;
 
 public class Launch extends Application {
 
@@ -25,10 +26,11 @@ public class Launch extends Application {
 
         Scene scene = new Scene(root);
 
-        //stage.setMaximized(true);
         _stage.setTitle("Recipe Finder");
         _stage.getIcons().add(new Image("assets/ChickenLeg.png"));
         _stage.setScene(scene);
+        _stage.setHeight(WindowSize.height);
+        _stage.setWidth(WindowSize.width);
         _stage.show();
     }
 
