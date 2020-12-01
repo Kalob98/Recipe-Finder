@@ -55,6 +55,17 @@ public class Recipe {
         return "";
     }
 
+    public boolean equals(Recipe _comparee){
+        if(this.getTitle().equals(_comparee.getTitle())){
+            if(this.getID().equals(_comparee.getID())){
+                if(this.getUrl().equals(_comparee.getUrl())){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     //=================  GETTERS ===============
     public String getTitle() {
         return this.title;
