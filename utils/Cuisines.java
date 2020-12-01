@@ -13,6 +13,10 @@ import javafx.collections.ObservableList;
 
 public class Cuisines {
 
+    /**
+     *
+     * @return
+     */
     public static ObservableList loadCuisines() {
         ObservableList<String> cuisineOptions = FXCollections.observableArrayList();
 

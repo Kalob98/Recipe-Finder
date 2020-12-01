@@ -6,13 +6,13 @@ package Models;
  *
  * @author Kalob Reinholz
  *
- * Last Updated 11/12/20
+ * Last Updated 11/30/20
  */
-import Models.Recipe;
-
 public class SpoonacularAdapter {
 
     /**
+     * Calls the SpoonacularApi class and receives a list of recipes that is
+     * converted to recipe objects and placed into an array.
      *
      * @param _cuisine
      * @param _inlcudedIngredients
@@ -41,6 +41,8 @@ public class SpoonacularAdapter {
     }
 
     /**
+     * Calls the SpoonacularApi class and receives a random recipe that is
+     * converted to a recipe object.
      *
      * @return
      */

@@ -5,7 +5,7 @@ package Models;
  *
  * @author Brodrick Grimm
  *
- * Last updated 11/12/20
+ * Last updated 11/30/20
  */
 import static utils.SpoonacularBaseUrl.baseUrlForUrlCreation;
 
@@ -17,6 +17,13 @@ public class Recipe {
     private String id;
     private boolean isSaved;
 
+    /**
+     *
+     * @param _title
+     * @param _url
+     * @param _id
+     * @param _isSaved
+     */
     public Recipe(String _title, String _url, String _id, boolean _isSaved) {
         this.title = _title;
         this.url = _url;
@@ -24,6 +31,12 @@ public class Recipe {
         this.isSaved = _isSaved;
     }
 
+    /**
+     *
+     * @param _title
+     * @param _url
+     * @param _id
+     */
     public Recipe(String _title, String _url, String _id) {
         this.title = _title;
         this.url = _url;
@@ -31,6 +44,11 @@ public class Recipe {
         this.isSaved = false;
     }
 
+    /**
+     *
+     * @param _title
+     * @param _id
+     */
     public Recipe(String _title, String _id) {
         this.id = _id;
         this.title = _title;
@@ -38,27 +56,42 @@ public class Recipe {
         this.isSaved = false;
     }
 
+    /**
+     * Default.
+     */
     public Recipe() {
     }
 
+    /**
+     *
+     * @return
+     */
     public static Recipe getInstance() {
         return INSTANCE;
     }
 
-
+    /**
+     *
+     * @return
+     */
     public String createURL() {
-        if(this.title != null){
+        if (this.title != null) {
             url = baseUrlForUrlCreation + this.title.replace(' ', '-')
-                + "-" + this.id;
+                    + "-" + this.id;
             return url;
         }
         return "";
     }
 
-    public boolean equals(Recipe _comparee){
-        if(this.getTitle().equals(_comparee.getTitle())){
-            if(this.getID().equals(_comparee.getID())){
-                if(this.getUrl().equals(_comparee.getUrl())){
+    /**
+     *
+     * @param _comparee
+     * @return
+     */
+    public boolean equals(Recipe _comparee) {
+        if (this.getTitle().equals(_comparee.getTitle())) {
+            if (this.getID().equals(_comparee.getID())) {
+                if (this.getUrl().equals(_comparee.getUrl())) {
                     return true;
                 }
             }
@@ -79,7 +112,7 @@ public class Recipe {
         return this.url;
     }
 
-    public boolean getIsSaved(){
+    public boolean getIsSaved() {
         return this.isSaved;
     }
 
@@ -92,10 +125,11 @@ public class Recipe {
         this.url = url;
     }
 
-    public void setIsSaved(boolean _isSaved){
+    public void setIsSaved(boolean _isSaved) {
         this.isSaved = _isSaved;
     }
-    public void setId(String id){
+
+    public void setId(String id) {
         this.id = id;
     }
 }

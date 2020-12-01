@@ -13,6 +13,11 @@ import javafx.collections.ObservableList;
 
 public class Intolerances {
 
+    /**
+     * Currently not used but listed is every intolerance the API allows.
+     *
+     * @return
+     */
     public static ObservableList loadIntolerance() {
         ObservableList<String> intolerance = FXCollections.observableArrayList();
 

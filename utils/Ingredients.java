@@ -13,8 +13,14 @@ import javafx.collections.ObservableList;
 
 public class Ingredients {
 
-    public enum INGREDIENTS {Almonds,Beef,Cheese,Chicken,Eggs,Fish,Flour,Milk,Onions,Pork,Potatoes,Rice,Tomatoes};
+    public enum INGREDIENTS {
+        Almonds, Beef, Cheese, Chicken, Eggs, Fish, Flour, Milk, Onions, Pork, Potatoes, Rice, Tomatoes
+    };
 
+    /**
+     *
+     * @return
+     */
     public static ObservableList loadIngredients() {
         ObservableList<String> ingredients = FXCollections.observableArrayList();
 

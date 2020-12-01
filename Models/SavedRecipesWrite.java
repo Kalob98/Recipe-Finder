@@ -5,7 +5,7 @@ package Models;
  *
  * @author Heng Tan
  *
- * Last Updated 11/29/2020
+ * Last Updated 11/30/2020
  */
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -22,27 +22,30 @@ public class SavedRecipesWrite {
      * @throws IOException
      */
     public static boolean write(Recipe _recipe) throws IOException {
+
         if (_recipe.getIsSaved() == false) {
 
-            //Files.list(Paths.get(".")).forEach(System.out::println);
             String separator = System.getProperty("file.separator");
             String file = "src" + separator + "RecipeSaver.txt";
             FileWriter fileWriter = new FileWriter(file, true);
-            try ( BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+
+            try (BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+
                 PrintWriter pw = new PrintWriter(fileWriter);
                 String string = _recipe.getTitle() + "::" + _recipe.getUrl() + "::" + _recipe.getID() + "::" + "true" + "\n";
                 pw.append(string);
                 System.out.println("New recipes added!");
 
                 return true;
-            } catch (IOException ex) {
+            }
+            catch (IOException ex) {
                 System.out.println("Error!" + ex);
             }
 
             System.out.println("The file does not exist.");
             return false;
         }
-        System.out.println("Recipe is already exists in the saved recipes");
+        System.out.println("Recipe already exists in your saved recipes");
         return false;
     }
 }

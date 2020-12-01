@@ -6,7 +6,7 @@ package Models;
  *
  * @author Heng Tan
  *
- * Last Updated 11/29/2020
+ * Last Updated 11/30/2020
  */
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -27,38 +27,51 @@ import java.util.logging.Logger;
 
 public class SavedRecipesRead {
 
+    private static final int idLoc = 2;
+
+    /**
+     * Method used to determine if a recipe has already been saved. (method not
+     * in use).
+     *
+     * @return
+     * @throws IOException
+     */
     public static Recipe[] getSavedRecipes() throws IOException {
         ArrayList<Recipe> recipe = new ArrayList<Recipe>();
-        //Files.list(Paths.get(".")).forEach(System.out::println);
+
         // Name of the file to open
         String separator = System.getProperty("file.separator");
         String file = "src" + separator + "RecipeSaver.txt";
+
         // Referencing one line at a time
         String line;
+
         // FileReader reads text files
         FileReader fileReader = null;
+
         try {
             fileReader = new FileReader(file);
         }
         catch (FileNotFoundException ex) {
             Logger.getLogger(SavedRecipesRead.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         // Always wrap FileReader in BufferedReader
         BufferedReader bufferedReader = new BufferedReader(fileReader);
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
-//            if (!br.ready()) {
-//                throw new IOException();
-//            }
+
             if ((line = br.readLine()) != null) {
-                while ((line = br.readLine()) != null) {
+                while (line != null) {
+
                     //Create new recipe from parameter separated by commas
                     List<String> list = Arrays.asList(line.split("::"));
+
                     //Insert into arraylist
-                    //recipe.add(new Recipe(list.get(0), list.get(1), list.get(2), Boolean.parseBoolean(list.get(3))));
                     recipe.add(new Recipe(list.get(0), list.get(1), list.get(2), true));
 
+                    line = br.readLine();
                 }
             }
         }
@@ -66,76 +79,104 @@ public class SavedRecipesRead {
             Logger.getLogger(SavedRecipesRead.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
+
             // Always closing the file
             bufferedReader.close();
         }
         catch (IOException ex) {
             Logger.getLogger(SavedRecipesRead.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         Recipe[] recipes = new Recipe[recipe.size()];
         recipes = recipe.toArray(recipes);
 
         return recipes;
     }
 
+    /**
+     * Method used to delete saved recipe.
+     *
+     * @param _file
+     * @param _remove
+     * @param _delimiter
+     * @throws IOException
+     */
     public static void delete(String _file, String _remove, String _delimiter) throws IOException {
-        //Files.list(Paths.get(".")).forEach(System.out::println);
 
         String separator = System.getProperty("file.separator");
+
+        //temp file created to keep RecipeSaver.txt clean
         String _tempFile = "src" + separator + "temp.txt";
         File newFile = new File(_tempFile);
 
-        String _line;
-        String _data[];
+        String line;
+        String data[];
 
         try {
-            FileWriter _fileWriter = new FileWriter(_tempFile);
-            BufferedWriter _bufferedWriter = new BufferedWriter(_fileWriter);
-            PrintWriter _printWriter = new PrintWriter(_bufferedWriter);
+            FileWriter fileWriter = new FileWriter(_tempFile);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            PrintWriter printWriter = new PrintWriter(bufferedWriter);
 
-            FileReader _fileReader = new FileReader(_file);
-            BufferedReader _bufferedReader = new BufferedReader(_fileReader);
+            FileReader fileReader = new FileReader(_file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-            while ((_line = _bufferedReader.readLine()) != null) {
-                _data = _line.split("::");
-                if (_data[2].equalsIgnoreCase(_remove)) {
+            while ((line = bufferedReader.readLine()) != null) {
+                data = line.split("::");
+
+                if (data[idLoc].equalsIgnoreCase(_remove)) {
 
                 }
                 else {
-                    _printWriter.println(_line);
+                    printWriter.println(line);
                 }
             }
 
-            _printWriter.flush();
-            _printWriter.close();
-            _fileReader.close();
-            _bufferedReader.close();
-            _bufferedWriter.close();
-            _fileWriter.close();
+            //closing everything
+            printWriter.flush();
+            printWriter.close();
+            fileReader.close();
+            bufferedReader.close();
+            bufferedWriter.close();
+            fileWriter.close();
 
         }
         catch (IOException ex) {
             System.out.println("Error, File is not found!");
         }
 
+        //calls the copyingFile method
         copyingFile(newFile, new File(_file));
+
+        //deleting temp.txt
         newFile.delete();
     }
 
-    private static void copyingFile(File _source, File _location) throws IOException {
+    /**
+     * Copies temp.txt to RecipeSaver.txt.
+     *
+     * @param _source
+     * @param _location
+     * @throws IOException
+     */
+    private static void copyingFile(File _source, File _destination) throws IOException {
         FileChannel source = null;
-        FileChannel location = null;
+        FileChannel destination = null;
         try {
             source = new FileInputStream(_source).getChannel();
-            location = new FileOutputStream(_location).getChannel();
-            location.transferFrom(source, 0, source.size());
+            destination = new FileOutputStream(_destination).getChannel();
+            destination.transferFrom(source, 0, source.size());
         }
         finally {
             source.close();
-            location.close();
+            destination.close();
         }
     }
 
+    /**
+     * Gets the path of the txt file.
+     *
+     * @return
+     */
     public static String getFilePathToTextFile() {
         String separator = System.getProperty("file.separator");
         String _tempFile = "src" + separator + "RecipeSaver.txt";

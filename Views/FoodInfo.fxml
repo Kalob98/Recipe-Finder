@@ -9,44 +9,44 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" styleClass="anchor" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.FoodInfoController">
-   <children>
-      <Text layoutX="355.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cuisine" textAlignment="CENTER" wrappingWidth="90.287109375">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <ChoiceBox fx:id="cuisineChoiceBox" layoutX="325.0" layoutY="77.0" prefWidth="150.0" />
-      <Text layoutX="96.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Items to include" textAlignment="CENTER" wrappingWidth="121.06640625">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <Text layoutX="545.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Items to exclude" textAlignment="CENTER" wrappingWidth="121.06640625">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <Button fx:id="searchButton" layoutX="357.0" layoutY="334.0" mnemonicParsing="false" onAction="#searchRecipe" prefHeight="35.0" prefWidth="85.0" text="Search" />
-      <Button fx:id="randomButton" layoutX="357.0" layoutY="388.0" mnemonicParsing="false" onAction="#randomRecipe" prefHeight="35.0" prefWidth="85.0" text="Random" />
-      <Button fx:id="backButton" layoutX="358.0" layoutY="439.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="85.0" text="Back" />
-      <ScrollPane hbarPolicy="NEVER" layoutX="96.0" layoutY="129.0" prefHeight="155.0" prefWidth="121.0" vbarPolicy="ALWAYS">
-         <content>
-            <VBox fx:id="includeVBox" prefHeight="200.0" prefWidth="100.0">
-               <padding>
-                  <Insets top="1.0" />
-               </padding>
-            </VBox>
-         </content>
-      </ScrollPane>
-      <ScrollPane hbarPolicy="NEVER" layoutX="545.0" layoutY="129.0" prefHeight="155.0" prefWidth="121.0" vbarPolicy="ALWAYS">
-         <content>
-            <VBox fx:id="excludeVBox" prefHeight="200.0" prefWidth="100.0">
-               <padding>
-                  <Insets top="1.0" />
-               </padding>
-            </VBox>
-         </content>
-      </ScrollPane>
-   </children>
+<AnchorPane id="AnchorPane" prefHeight="500" prefWidth="800" styleClass="anchor" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.FoodInfoController">
+    <children>
+        <Text layoutX="355.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cuisine" textAlignment="CENTER" wrappingWidth="90.287109375">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Text>
+        <ChoiceBox fx:id="cuisineChoiceBox" layoutX="325.0" layoutY="77.0" prefWidth="150.0" />
+        <Text layoutX="96.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Items to include" textAlignment="CENTER" wrappingWidth="121.06640625">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Text>
+        <Text layoutX="545.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Items to exclude" textAlignment="CENTER" wrappingWidth="121.06640625">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Text>
+        <Button fx:id="searchButton" layoutX="357.0" layoutY="334.0" mnemonicParsing="false" onAction="#searchRecipe" prefHeight="35.0" prefWidth="85.0" text="Search" />
+        <Button fx:id="randomButton" layoutX="357.0" layoutY="388.0" mnemonicParsing="false" onAction="#randomRecipe" prefHeight="35.0" prefWidth="85.0" text="Random" />
+        <Button fx:id="backButton" layoutX="358.0" layoutY="439.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="85.0" text="Back" />
+        <ScrollPane hbarPolicy="NEVER" layoutX="96.0" layoutY="129.0" prefHeight="155.0" prefWidth="121.0" vbarPolicy="ALWAYS">
+            <content>
+                <VBox fx:id="includeVBox" prefHeight="200.0" prefWidth="100.0">
+                    <padding>
+                        <Insets top="1.0" />
+                    </padding>
+                </VBox>
+            </content>
+        </ScrollPane>
+        <ScrollPane hbarPolicy="NEVER" layoutX="545.0" layoutY="129.0" prefHeight="155.0" prefWidth="121.0" vbarPolicy="ALWAYS">
+            <content>
+                <VBox fx:id="excludeVBox" prefHeight="200.0" prefWidth="100.0">
+                    <padding>
+                        <Insets top="1.0" />
+                    </padding>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </children>
 </AnchorPane>

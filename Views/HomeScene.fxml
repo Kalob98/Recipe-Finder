@@ -5,23 +5,24 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import utils.WindowSize?>
 
-<AnchorPane id="AnchorPane" cache="true" pickOnBounds="false" prefHeight="500.0" prefWidth="800.0" styleClass="anchor" stylesheets="@../StyleSheets/HomeScene.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomeSceneController">
-   <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="95.0" layoutX="180.0" layoutY="186.0" stroke="BLACK" strokeType="INSIDE" width="438.0" />
-      <Button fx:id="prevRecipe" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#prevRecipe" prefHeight="35.0" prefWidth="125.0" text="Previous Recipes" />
-      <Text layoutX="259.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Recipe Finder.">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Text>
-      <Text layoutX="194.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Here to help find you the perfect meal!">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Text>
-      <Button fx:id="howToUse" layoutX="357.0" layoutY="340.0" mnemonicParsing="false" onAction="#howToUse" prefHeight="38.0" prefWidth="86.0" stylesheets="@../StyleSheets/HomeScene.css" text="How to use" />
-      <Button fx:id="next" layoutX="357.0" layoutY="386.0" mnemonicParsing="false" onAction="#next" prefHeight="38.0" prefWidth="86.0" text="Next" />
-      <Button fx:id="quitButton" layoutX="357.0" layoutY="432.0" mnemonicParsing="false" onAction="#quit" prefHeight="38.0" prefWidth="86.0" text="Quit" />
-   </children>
+<AnchorPane id="AnchorPane" cache="true" pickOnBounds="false" prefHeight="500" prefWidth="800" styleClass="anchor" stylesheets="@../StyleSheets/HomeScene.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomeSceneController">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="95.0" layoutX="180.0" layoutY="186.0" stroke="BLACK" strokeType="INSIDE" width="438.0" />
+        <Button fx:id="prevRecipe" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#prevRecipe" prefHeight="35.0" prefWidth="125.0" text="Previous Recipes" />
+        <Text layoutX="259.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Recipe Finder.">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Text>
+        <Text layoutX="194.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Here to help find you the perfect meal!">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Text>
+        <Button fx:id="howToUse" layoutX="357.0" layoutY="340.0" mnemonicParsing="false" onAction="#howToUse" prefHeight="38.0" prefWidth="86.0" stylesheets="@../StyleSheets/HomeScene.css" text="How to use" />
+        <Button fx:id="next" layoutX="357.0" layoutY="386.0" mnemonicParsing="false" onAction="#next" prefHeight="38.0" prefWidth="86.0" text="Next" />
+        <Button fx:id="quitButton" layoutX="357.0" layoutY="432.0" mnemonicParsing="false" onAction="#quit" prefHeight="38.0" prefWidth="86.0" text="Quit" />
+    </children>
 </AnchorPane>
