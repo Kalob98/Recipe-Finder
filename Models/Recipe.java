@@ -7,7 +7,6 @@ package Models;
  *
  * Last updated 11/12/20
  */
-import utils.SpoonacularBaseUrl;
 import static utils.SpoonacularBaseUrl.baseUrlForUrlCreation;
 
 public class Recipe {
@@ -23,7 +22,6 @@ public class Recipe {
         this.url = _url;
         this.id = _id;
         this.isSaved = _isSaved;
-        System.out.println("TRUE!");
     }
 
     public Recipe(String _title, String _url, String _id) {
@@ -55,6 +53,17 @@ public class Recipe {
             return url;
         }
         return "";
+    }
+
+    public boolean equals(Recipe _comparee){
+        if(this.getTitle().equals(_comparee.getTitle())){
+            if(this.getID().equals(_comparee.getID())){
+                if(this.getUrl().equals(_comparee.getUrl())){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     //=================  GETTERS ===============

@@ -81,8 +81,8 @@ public class RecipeChoiceController implements Initializable {
         temp.setIsSaved(Boolean.parseBoolean(_hLink.getEllipsisString()));
         temp.setId(_hLink.getId());
 
-        System.out.println(_hLink.getAccessibleText());
-        System.out.println(_hLink.getText());
+        //System.out.println(_hLink.getAccessibleText());
+        //System.out.println(_hLink.getText());
 
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/Views/RecipeScene.fxml"));
@@ -99,8 +99,8 @@ public class RecipeChoiceController implements Initializable {
      * @throws IOException
      */
     @FXML
-    private void back(ActionEvent _event) throws IOException {
-        Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/FoodInfo.fxml"));
+    private void homeButton(ActionEvent _event) throws IOException {
+        Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/HomeScene.fxml"));
         Scene infoScene = new Scene(infoParent);
 
         Stage window = (Stage) ((Node) _event.getSource()).getScene().getWindow();

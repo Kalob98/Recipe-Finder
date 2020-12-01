@@ -11,8 +11,6 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class SavedRecipesWrite {
 
@@ -26,7 +24,7 @@ public class SavedRecipesWrite {
     public static boolean write(Recipe _recipe) throws IOException {
         if (_recipe.getIsSaved() == false) {
 
-            Files.list(Paths.get(".")).forEach(System.out::println);
+            //Files.list(Paths.get(".")).forEach(System.out::println);
             String separator = System.getProperty("file.separator");
             String file = "src" + separator + "RecipeSaver.txt";
             FileWriter fileWriter = new FileWriter(file, true);

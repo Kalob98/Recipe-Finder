@@ -11,7 +11,7 @@ package Controllers;
  * Last updated 11/29/20
  */
 import Models.RecipeArray;
-import static Models.SavedRecipesRead.getSavedRecipes;
+import Models.SavedRecipesRead;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -50,7 +50,7 @@ public class HomeSceneController implements Initializable {
     @FXML
     private void prevRecipe(ActionEvent _event) throws IOException {
         RecipeArray temp = RecipeArray.getInstance();
-        temp.setRecipes(getSavedRecipes());
+        temp.setRecipes(SavedRecipesRead.getSavedRecipes());
 
         Parent infoParent = FXMLLoader.load(getClass().getResource("/Views/RecipeChoice.fxml"));
         Scene infoScene = new Scene(infoParent);

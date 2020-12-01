@@ -34,7 +34,7 @@ public class SpoonacularAPI implements RecipeApiInterface {
     private static final String brodyKey = ApiKeys.brody_ApiKey();
     private static final String hengKey = ApiKeys.heng_ApiKey();
 
-    //used to place information from the api call in an array
+    //used to place information from the api call in the random array
     private static final int TITLE_LOCATION = 0;
     private static final int URL_LOCATION = 1;
     private static final int ID_LOCATION = 2;
@@ -46,7 +46,7 @@ public class SpoonacularAPI implements RecipeApiInterface {
 
     /**
      * Method that calls the spoonacular API to find multiple recipes using user
-     * requirement.
+     * requirements.
      *
      * @param _cuisine
      * @param _includedIngredients
@@ -59,18 +59,28 @@ public class SpoonacularAPI implements RecipeApiInterface {
      */
     @Override
     public String[] targetedRecipe(String _cuisine, String _includedIngredients, String _excludedIngredients, String _intolerances) {
+        
+        /**
+         * Creating the url using the users cuisine, included and excluded 
+         * ingredients. This url uses heng's key.
+         */
         String recipe = (baseUrlForApiCall + complexSearch + "cuisine=" + _cuisine
                 + "&includeIngredients=" + _includedIngredients
                 + "&excludeIngredients=" + _excludedIngredients
                 + "&intolerances=" + _intolerances
                 + number + hengKey);
 
-        System.out.println(recipe);
         //array that is returned with recipes information
         String[] recipesInfo = new String[0];
+        
         try {
 
             int status = loadApi(recipe);
+            
+            /**
+             * If the response code from the api call is 402, this means
+             * that key cannot make anymore calls. The next key is tried.
+             */
             if(status == 402){
                 recipe = (baseUrlForApiCall + complexSearch + "cuisine=" + _cuisine
                 + "&includeIngredients=" + _includedIngredients
@@ -86,6 +96,9 @@ public class SpoonacularAPI implements RecipeApiInterface {
                 + "&intolerances=" + _intolerances
                 + number + kalobKey);
             }
+            /**
+             * If all keys have been exhausted.
+             */
             status = loadApi(recipe);
             if(status == 402){
                 System.out.println("We have ran out of API calls for the day. Try again tommorrow. Sorry!");
@@ -94,10 +107,21 @@ public class SpoonacularAPI implements RecipeApiInterface {
             JSONObject obj = new JSONObject(responseContent.toString());
             JSONArray array = obj.getJSONArray("results");
             JSONObject temp;
-
+            
+            /**
+             * total results is the total number of recipes possible (ex. 5096).
+             * number is the number of results used in the api call (ex. 10).
+             * 
+             * Getting the min between the two so that the array can be set to
+             * the proper size.
+             * 
+             * The total is then multiplied by 2 since each recipe's title and
+             * id is placed into the array.
+             */
             int total = Math.min(obj.getInt("totalResults"), obj.getInt("number"));
             recipesInfo = new String[(total * 2)];
 
+            //populating the array
             int arrCounter = 0;
             for (int i = 0; i < total; i++) {
                 temp = array.getJSONObject(i);
@@ -132,12 +156,24 @@ public class SpoonacularAPI implements RecipeApiInterface {
 
         try {
 
-            loadApi(randomRecipe);
+            int status = loadApi(randomRecipe);
+            if(status == 402){
+                randomRecipe = (baseUrlForApiCall + random + brodyKey);
+            }
+            status = loadApi(randomRecipe);
+            if(status == 402){
+                randomRecipe = (baseUrlForApiCall + random + hengKey);
+            }
+            status = loadApi(randomRecipe);
+            if(status == 402){
+                System.out.println("We have ran out of API calls for the day. Try again tommorrow. Sorry!");
+            }
 
             JSONObject obj = new JSONObject(responseContent.toString());
             JSONArray array = obj.getJSONArray("recipes");
             JSONObject temp = array.getJSONObject(0);
 
+            //populating the array
             randomRecipeInfo[TITLE_LOCATION] = temp.getString("title");
             randomRecipeInfo[URL_LOCATION] = temp.getString("spoonacularSourceUrl");
             randomRecipeInfo[ID_LOCATION] = temp.getString("id");
@@ -158,13 +194,15 @@ public class SpoonacularAPI implements RecipeApiInterface {
      *
      * @param recipe
      */
-    private int loadApi(String recipe) {
-
+    private int loadApi(String _recipe) {
+        
+        //reseting the responseContent so a new randomrecipe is always displayed
         responseContent = new StringBuilder();
         int status = 0;
-
+        
+        //connecting to the api
         try {
-            URL url = new URL(recipe);
+            URL url = new URL(_recipe);
             connection = (HttpURLConnection) url.openConnection();
 
             connection.setRequestMethod("GET");
